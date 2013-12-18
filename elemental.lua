@@ -176,7 +176,10 @@ ProbablyEngine.rotation.register_custom(262, "SoloPvP_NEM", {
   {"Totemic Recall",{
 		"player.totem(Searing Totem).duration < 45",
 		"player.totem(Searing Totem)"}},
-
+  {"Totemic Recall",{
+		"player.moving",
+		"player.totem(Searing Totem)"}},
+		
   	--Cleanse Spirit Self
 	{"Cleanse Spirit", "player.dispellable(Cleanse Spirit)"},
 		--Healing Surge 2061 lvl 7        
