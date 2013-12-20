@@ -117,6 +117,7 @@ ProbablyEngine.rotation.register_custom(262, "SoloPvP_NEM", {
     { "Healing Stream Totem", {
 		"modifier.cooldowns",
 		"!player.moving",
+		"lowest.health < 95",
 		"!totem(Healing Stream Totem)" }},
     { "Grounding Totem", {
 	    "modifier.cooldowns",
@@ -128,15 +129,15 @@ ProbablyEngine.rotation.register_custom(262, "SoloPvP_NEM", {
     { "!Flame Shock", {
 		"target.debuff(Flame Shock).duration <= 3",
 		"player.moving",}},
-    { "Lava Burst" },
-    { "Elemental Blast" },
+    { "Lava Burst", "!player.moving" },
+    { "Elemental Blast",  },
     { "Earth Shock", "player.buff(Lightning Shield).count >= 6" },
     { "!Earth Shock", {
 		"player.buff(Lightning Shield).count >= 6",
 		"player.moving"}},
 	{ "!Frost Shock", {
 		"!target.debuff(Frost Shock).any",
-		"player.moving"}},
+		"target.moving"}},
 --Primal Strike 73899 lvl 3
 		{"73899", {
 			"player.spell(73899).exists",
