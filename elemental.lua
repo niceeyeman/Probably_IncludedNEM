@@ -32,6 +32,7 @@ ProbablyEngine.rotation.register_custom(262, "SoloPvP_NEM", {
 	{"#29593", "player.state.disorient"},
 
 	-- interrupt
+	
 	--Wind Shear 57994 lvl 16
 	{ "Wind Shear", {
 		"player.spell(57994).exists",

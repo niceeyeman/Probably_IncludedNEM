@@ -3,6 +3,9 @@
 ## Notes: ProbablyEngine Custom Destruction Warlock
 ## Dependencies: Probably
 
-Destuction.lua
+AffLock.lua
+Destruction.lua
 Frost.lua
 elemental.lua
+Destructionpvp.lua
+FireMage.lua

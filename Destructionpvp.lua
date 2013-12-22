@@ -4,8 +4,11 @@
 -- Based off Included
 -- Some code "borrowed" from Charus https://probablyengine.com/forum/viewtopic.php?id=841
 --  and Chunky https://probablyengine.com/forum/viewtopic.php?id=718
+-- ******
+-- NEED nemcommonlib github https://github.com/niceeyeman/Probably_nemcommonlib
+-- ******
 
-ProbablyEngine.rotation.register_custom(267, "Included[NEM]", 
+ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp", 
 {
 -- Buff
 	{ "109773", { 										-- Dark Intent Charus
@@ -40,8 +43,17 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 		"!target.immune.fear",
 		"modifier.interrupts" }},
 	
+-- PVP Trink Insignia of the Alliance
+	{"#29593", "player.state.fear"},					-- Insignia of the Alliance
+	{"#29593", "player.state.incapacitate"},
+	{"#29593", "player.state.disorient"},
 
-	{"#5512", "player.health < 45"},					-- Healthstone
+-- PVP Human Racial
+	{"59752", "player.state.fear"},						-- Every Man for Himself
+	{"59752", "player.state.incapacitate"},
+	{"59752", "player.state.disorient"},
+
+	{"#5512", "player.health < 65"},					-- Healthstone
 	{"6789",{											-- Mortal Coil
 		"player.health <88",
 		"target.spell(6789).range"}},
@@ -50,8 +62,14 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 		"target.range <=7",
 		"!target.debuff(fear)",
 		"!modifier.last",
-		"modifier.rshift",
 		"!target.immune.fear"}},
+
+
+	{ "!/targetenemy [noharm]", {						-- Auto Target Enemy 
+		"!target.alive", 
+		"!target.enemy",
+		"!target.exists",
+	}},
 	
 	{ "80240", {										-- Havoc on Focus
 		"focus.alive",
@@ -60,13 +78,15 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 		(function()
 			return UnitIsUnit("target", "focus") ~= 1
 			end)	
-		}, "focus" },
-		
--- Rotation
+		}, "focus" },	
+
+  -- Rotation
+  {														-- Can't Touch This Start
 	--DoT
-	{ "348", 											--Immolate
+	{ "348", 											-- Immolate
 		{"target.debuff(348).duration <= 4",
 		"!modifier.last"}},	
+	{ "5740", "!modifier.last", "ground" },				--Rain of Fire
 		
 	{{ 													-- ShadowBurn from Chunky
 		{ "!17877", "player.buff(80240).count >= 1" }, 		-- Havoc
@@ -92,8 +112,15 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 	{ "17962" },										--Conflagrate
 	{ "29722"},											--Incinerate (filler)
 	{ "!77799", "player.moving" },						--Fel Flame
-
-},{
+},	{													--Don't waste mana 
+		"!target.immune.all",							--Can't touch this!
+		"!target.immune.spell",
+    	"!target.buff(122464.any)", 					-- Dematerialize 
+		"!target.buff(122470).any", 					-- touch of karma
+		},												-- Cant touch this End
+		
+}, 
+{
 --OOC
 --summon pet, buffs
 -- Focus Macro
@@ -107,21 +134,22 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 			return UnitIsUnit("target", "focus") ~= 1
 			end)	
 		}, "focus" },	
-
-	{ "348",{
+	
+	{"348",{											--Immolate auto attack		
 			"player.spell(348).exists",
 			"target.spell(348).range",
 			"target.exists",
 			"target.enemy",
 			"!target.debuff(348)"},"target"},
-  -- Create Healthstone
-	{ "6201", { 
-		"@nemcommon.Healthstone",
-		"!modifier.last" }},
+			
+  
+  { "6201", { 											-- Create Healthstone
+      "@nemcommon.Healthstone",
+      "!modifier.last" }},
 	  
-	{ "109773", { 										-- Dark Intent Charus
+	{"109773", { 										-- Dark Intent Charus
 		"!player.buff(109773)",
-		"!@nemcommon.tenSpellpower"}},					--10% spell power any
+		"!@nemcommon.tenSpellpower"}},					-- 10% spell power any
 	
-	{"691","!pet.exists"},
+	{"691","!pet.exists"},								--  fel hunter
 })
