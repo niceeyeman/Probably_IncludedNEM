@@ -42,7 +42,7 @@ ProbablyEngine.rotation.register_custom(265, "NEM Solo-PVP",
 		{	"!pet.exists",
 			"!modifier.last"
 		},
-	}
+	},
    
  --OHHSHITZ
 	{"!#5512", "player.health <= 60"},

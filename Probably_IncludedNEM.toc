@@ -1,10 +1,11 @@
 ## Interface: 50400
 ## Title: Probably - Included[NEM]
-## Notes: ProbablyEngine Custom Destruction Warlock
+## Notes: ProbablyEngine Custom Rotations by NEM
 ## Dependencies: Probably
 
 AffLock.lua
 Destruction.lua
+DiscPriestPvP.lua
 Frost.lua
 elemental.lua
 Destructionpvp.lua

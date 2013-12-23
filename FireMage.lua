@@ -117,7 +117,7 @@ ProbablyEngine.rotation.register_custom(63, "NEM Fire",
 			},
 		},
 		{	"target.exists",											-- Don't waste mana
-			"target.enemy"
+			"target.enemy",
 			"!player.spell.cooldown(12043)",			-- Pres of Mind ready
 			"!target.immune.all",						-- Can't touch this!
 			"!target.buff(122464.any)", 				-- Dematerialize 
