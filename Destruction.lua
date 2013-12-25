@@ -4,48 +4,57 @@
 -- Based off Included
 -- Some code "borrowed" from Charus https://probablyengine.com/forum/viewtopic.php?id=841
 --  and Chunky https://probablyengine.com/forum/viewtopic.php?id=718
+-- NO auto target, autofear, or auto RoF
 
 ProbablyEngine.rotation.register_custom(267, "Included[NEM]", 
 {
 -- Buff
-	{ "109773", 										-- Dark Intent Charus
+	{-- Dark Intent Charus
+	"109773", 										
 		{ 	"!player.buff(109773)",
 			"!@nemcommon.tenSpellpower"					--10% spell power any
 		}
 	},
 -- Curses  foiled again	
-	{ "1490",  											-- Curse of Elements Charus
+	-- Curse of Elements Charus
+	{ "1490",  											
 		{	"!modifier.last(1490)",							--Antispam
 			"!target.debuff(1490)",						 	--CoE from anyone
 			"!@nemcommon.fiveMagicdam"					 	--5% magic dam
 		}
 	},
-	{"109466",											-- Curse of Enfeeblement
+	-- Curse of Enfeeblement
+	{"109466",											
 		{	"!target.debuff(1490)",
 			"!target.debuff(109466)"
 		}
 	},
 		
   -- Cooldowns
-	{ "113858", "modifier.cooldowns" },					--Dark Soul: Instability
-	{ "18540", 											--Summon Doomguard
+	--Dark Soul: Instability
+	{ "113858", "modifier.cooldowns" },					
+	--Summon Doomguard
+	{ "18540", 											
 		{	"modifier.cooldowns",
 			"modifier.rcontrol"
 		}
 	},					
 -- Interupt
-	{"103135",											-- Felhunter: Spell Lock
+	-- Felhunter: Spell Lock
+	{"103135",											
 		{	"target.spell(103135).range",
 			"modifier.interrupts" 
 		}
 	},
-	{"5484",											-- Howl of Terror
-		{	"target.spell(5484).range",
+	-- Howl of Terror
+	{"5484",											
+		{	"target.range <= 10",
 			"!target.immune.fear",
 			"modifier.interrupts" 
 		}
 	},
-	{"6789",											-- Mortal Coil
+	-- Mortal Coil
+	{"6789",											
 		{	"target.spell(6789).range",
 			"!target.immune.fear",
 			"modifier.interrupts" 
@@ -53,19 +62,25 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 	},
 
 --Heals
-	{"#5512", "player.health < 45"},					-- Healthstone
-	{"6789",											-- Mortal Coil
+	-- Healthstone
+	{"#5512", "player.health < 45"},					
+	-- Mortal Coil
+	{"6789",											
 		{	"player.health <88",
 			"target.spell(6789).range"
 		}
 	},
-	{"114635",											-- Ember Tap
+	-- Ember Tap 2 or more Embers
+	{"114635",											
 		{	"player.embers >= 20",
 			"player.health < 60"
 		}
 	},
+	-- Lifeblood on cd for heal/haste
 	{"Lifeblood"},
-	{"5782",											-- Fear
+	
+	-- Fear Right Shift
+	{"5782",											
 		{	"target.range <= 7",
 			"!target.debuff(fear)",
 			"!modifier.last",
@@ -74,7 +89,8 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 		}
 	},
 	
-	{ "80240", 											-- Havoc on Focus
+	-- Havoc on Focus
+	{ "80240", 											
 		{	"focus.alive",
 			"focus.enemy",
 			"focus.spell(80240).range",
@@ -84,14 +100,19 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 		
 -- Rotation
 	--DoT
-	{ "348", 											--Immolate
+	--Immolate
+	{ "348", 											
 		{	"target.debuff(348).duration <= 4",
 			"!modifier.last"
 		}
 	},	
-		
+	--Rain of Fire Left Shift
+	{ "5740", "modifier.lshift", "ground" },
+	
+	-- Single Target DPS
+	-- ShadowBurn from Chunky
 	{	
-		{ 												-- ShadowBurn from Chunky
+		{ 												
 			{ "!17877", "player.buff(80240).count >= 1" }, 	-- Havoc
 			{ "!17877", "@nemcommon.tempBuffs" }, 			-- BUFFS 
 			{ "!17877", "player.embers >= 35" }, 			-- Capped
@@ -100,16 +121,19 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 		{ "target.health < 20" }
 	},
 		
-	{ "29722", "player.buff(108563)" },					--Incinerate with Proc
-	{ "!29722", 										--Incinerate with Proc when moving
+	--Incinerate with Proc
+	{ "29722", "player.buff(108563)" },					
+	--Incinerate with Proc when moving
+	{ "!29722", 										
 		{	"player.moving",
 			"player.buff(108563)" 
 		}
 	},					
-	{ "17962","spell.charges(17962) = 2"},				-- Conflagrate 2 charges
-	{ "5740", "modifier.lshift", "ground" },			--Rain of Fire
+	-- Conflagrate 2 charges
+	{ "17962","spell.charges(17962) = 2"},				
+	-- Chaos Bolt (Target Health >20%) Chunky
 	{
-		{ 												-- Chaos Bolt (Target Health >20%) Chunky
+		{ 												
 			{ "116858",  									--Don't cap
 				{	"!modifier.last", 
 					"player.embers >= 35" 
@@ -121,18 +145,40 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 			"!player.moving" 
 		}
 	},
-	{ "17962" },										--Conflagrate
-	{ "29722"},											--Incinerate (filler)
-	{ "!77799", "player.moving" },						--Fel Flame
+	--Conflagrate
+	{ "17962" },										
+	--Incinerate (filler)
+	{ "29722"},											
+	--Fel Flame
+	{ "!77799", "player.moving" },						
 
 },
 {
 --OOC
 --summon pet, buffs
+	--Buffs
+	-- Dark Intent Charus
+	{ "109773",  										
+		{ 	"!player.buff(109773)",
+			"!@nemcommon.tenSpellpower"					--10% spell power any
+		}
+	},					
+	
+	-- Summon Healthstone if < 3
+	{ "6201", 
+		{ 	"@nemcommon.Healthstone",
+			"!modifier.last" 
+		}
+	}, 
+	  	
+	--  fel hunter
+	{"691","!pet.exists"},								
+
 -- Focus Macro
 	{ "!/focus [target=mouseover]", "modifier.lcontrol" },
 
-	{ "80240", 											-- Havoc on Focus
+	-- Havoc on Focus
+	{ "80240", 											
 		{	"focus.alive",
 			"focus.enemy",
 			"focus.spell(80240).range",
@@ -140,26 +186,12 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 		}, "focus" 
 	},	
 
-	{ "348",											-- Immolate	
+	-- Immolate	
+	{ "348",											
 		{	"player.spell(348).exists",
 			"target.spell(348).range",
 			"target.exists",
 			"target.enemy",
-			"!target.debuff(348)"
 		},"target"
 	},
-  -- Create Healthstone
-	{ "6201", 
-		{ 	"@nemcommon.Healthstone",
-			"!modifier.last" 
-		}
-	},
-	  
-	{ "109773",  										-- Dark Intent Charus
-		{ 	"!player.buff(109773)",
-			"!@nemcommon.tenSpellpower"					--10% spell power any
-		}
-	},					
-	
-	{"691","!pet.exists"},
 })

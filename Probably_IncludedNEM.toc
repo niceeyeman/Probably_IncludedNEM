@@ -3,11 +3,17 @@
 ## Notes: ProbablyEngine Custom Rotations by NEM
 ## Dependencies: Probably
 
+## Func Lib
+nemcommonlib.lua
+
+## Rotations
 AffLock.lua
+demonology.lua
 Destruction.lua
 Destructionpvp.lua
 DiscPriestPvP.lua
 elemental.lua
 FireMage.lua
+FireMagePvP.lua
 Frost.lua
 MavminsEnhan.lua

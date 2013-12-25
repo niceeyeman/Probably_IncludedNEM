@@ -45,6 +45,7 @@ ProbablyEngine.rotation.register_custom(265, "NEM Solo-PVP",
 	},
    
  --OHHSHITZ
+	{"Lifeblood","player.health <= 90"},
 	{"!#5512", "player.health <= 60"},
 	{"Unending Resolve","player.health <= 50"},
 	{"Demonic Circle: Teleport","!player.health <= 30"},
@@ -114,7 +115,8 @@ ProbablyEngine.rotation.register_custom(265, "NEM Solo-PVP",
 				}
 			},
 				{ "172",											-- Corruption
-					{	"player.spell(172).exists",
+					{	"!modifier.last",
+						"player.spell(172).exists",
 						"target.spell(172).range",
 						"target.exists",
 						"target.enemy",
@@ -136,6 +138,7 @@ ProbablyEngine.rotation.register_custom(265, "NEM Solo-PVP",
 			{"Drain Soul","target.health <= 20"},
 			{"Drain Life","player.health <= 40"},
 			{"Malefic Grasp"},
+			{"shadow bolt"},
 		},
 		{	"!target.immune.all",		--Can't touch this!
 			"!target.buff(122464.any)", -- Dematerialize 

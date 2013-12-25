@@ -18,29 +18,43 @@ ProbablyEngine.rotation.register_custom(63, "NEM Fire",
 	{ "Evocation", "!player.buff(Invoker's Energy)" },	-- Evo for the buff
 
   
--- Survival
+	-- Survival
+	-- Ice Block
 	{ "Ice Block", "player.health <= 25"},				-- OhShitHopeSomeoneKillsThat!
-	{"115610"},											-- Temporal Shield on CD
-	{ "!#5512", "player.health < 45" }, 				-- Healthstone
-
+	-- Temporal Shield on CD
+	{"115610"},	
+	-- Healthstone
+	{"!#5512", "player.health < 45" },
+	-- Lifeblood each upgrade has own spellid ?? =p
+	{"Lifeblood", "player.health < 75"},
+	
 -- Cooldowns
   { "Mirror Image", "modifier.cooldowns" },				-- MiniMes
   
- -- Interrupts
+	-- Interrupts
 	{ "2139",
-		{	"player.spell(2139).usable",
-			"player.spell(2139).cooldown = 0",
+		{	"target.spell(2139).range",
 			"!modifier.last(2139)",
 			"modifier.interrupts" 
 		}, "target" 
 	},
-				
+	-- Frostjaw 102051			
 	{"102051", 
 		{	"target.spell(102051).range",
 			"modifier.interrupts" 
 		}, "target" 
 	},
- 
+
+	-- Polymorph Sheep on Focus
+	{ "118", 										
+		{	"focus.alive",
+			"focus.enemy",
+			"!focus.debuff(118)",
+			"focus.spell(118).range",
+			"!modified.last",
+			"@nemcommon.targNotfocus"	
+		}, "focus" 
+	},	
  
 -- Alter Time Burst
 	{ "12043", 											-- Presence of Mind
@@ -78,8 +92,17 @@ ProbablyEngine.rotation.register_custom(63, "NEM Fire",
 	{ "!Living Bomb", "@nemcommon.tempBuffs", "target" },
 -- Rotation
 	{ "!Combustion",  "modifier.lcontrol"},
+		-- Presence of Mind
+	{"12043"},
+ 	-- Pyro
+	{ "11366",									
+		{	"player.buff(12043)", 						-- Presence of Mind		
+			"target.spell(11366).range",
+		},"target"
+	},
   
 -- Dont wanna lose our Buff
+
 	{ "!Pyroblast", 
         {   "player.buff(Pyroblast!).duration <= 4", 
             "player.buff(Pyroblast!).duration > 0",
@@ -92,47 +115,24 @@ ProbablyEngine.rotation.register_custom(63, "NEM Fire",
             "player.buff(Pyroblast!)", -- Pyroblast!p
         }, 
 	}, 
- 
-  { "!Inferno Blast", "player.buff(Heating Up)" },
-  { "Scorch", "player.moving" },
-  { "133" }												-- Fireball
+	-- Inferno Blast
+	{ "!Inferno Blast", "player.buff(Heating Up)" },
+	-- Fire Blast
+		{"2136", "target.spell(2136).range","target"}, --add moving later
+	-- Scorch
+	{ "Scorch", "player.moving" },
+	-- Frostfire for snare
+	{"44614", "!target.debuff(44614)","target"},			
+	-- Fireball
+	{ "133", "target.spell(133).range","target" },		
+	-- Frostfire bolt for snare 44614 lvl 1 makes usable 10-12
+	{"44614","!player.spell(133).exists"},
   },
 {
 -- OOC
--- Evo > PoM > Pyro
-	{
-		{
-			{ "Evocation", -- Evo for buff
-				{	"!player.buff(Invoker's Energy)",
-					"player.spell(114003).exists",
-				}
-			},
-			{ "Mirror Image", "modifier.cooldowns" },				-- MiniMes
-			{ "12043","player.spell(12043).exists"},				-- PoM for insta Pyro
-			{ "11366",									-- Pyro
-				{	"player.buff(12043)", 						-- Presence of Mind		
-					"player.spell(11366).exists",
-					"target.spell(11366).range",
-				},"target"
-			},
-		},
-		{	"target.exists",											-- Don't waste mana
-			"target.enemy",
-			"!player.spell.cooldown(12043)",			-- Pres of Mind ready
-			"!target.immune.all",						-- Can't touch this!
-			"!target.buff(122464.any)", 				-- Dematerialize 
-			"!target.buff(122470).any", 				-- touch of karma
-		}, 
-	}, 
--- Or just Fireball it		
-		{ "133",											-- Fireball
-			{	"target.exists",							-- Don't waste mana 
-				"target.enemy",		
-				"!target.immune.all",						-- Can't touch this!
-				"!target.buff(122464.any)", 				-- Dematerialize 
-				"!target.buff(122470).any",  				-- touch of karma
-			} 
-		},
+	-- focus with right control
+	{ "!/focus [target=mouseover]", "modifier.rcontrol" },
+
 -- Buffs
 		{ "Arcane Brilliance", "!player.buff" },
 		{ "Molten Armor", "!player.buff(Molten Armor)" },
