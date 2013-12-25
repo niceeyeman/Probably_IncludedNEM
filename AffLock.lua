@@ -149,23 +149,6 @@ ProbablyEngine.rotation.register_custom(265, "NEM Solo-PVP",
    ---HEALING?!?! Theres no crying in Baseball!!!
 },
 { -- OOC
---Autoattack
-	{ "Agony",
-		{	"player.spell(Agony).exists",
-			"target.spell(Agony).range",
-			"target.exists",
-			"target.enemy",
-			"!target.debuff(Agony)"
-		},"target"
-	}, 
-	{ "172",											-- Corruption
-		{	"player.spell(172).exists",
-			"target.spell(172).range",
-			"target.exists",
-			"target.enemy",
-			"!target.debuff(172)"
-		},"target"
-	}, 
  --Buffs 
 
   {"Dark Intent",
@@ -190,5 +173,21 @@ ProbablyEngine.rotation.register_custom(265, "NEM Solo-PVP",
   --{"!#5512", 
   --  "player.health <= 40",
   --  "player"},
-
+--Autoattack
+	{ "Agony",
+		{	"player.spell(Agony).exists",
+			"target.spell(Agony).range",
+			"target.exists",
+			"target.enemy",
+			"!target.debuff(Agony)"
+		},"target"
+	}, 
+	{ "172",											-- Corruption
+		{	"player.spell(172).exists",
+			"target.spell(172).range",
+			"target.exists",
+			"target.enemy",
+			"!target.debuff(172)"
+		},"target"
+	}, 
 })

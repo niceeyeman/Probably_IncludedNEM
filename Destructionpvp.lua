@@ -10,6 +10,55 @@
 
 ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp", 
 {
+-- PVP Trink Insignia of the Alliance
+	-- Insignia of the Alliance
+	{"#29593", "player.state.fear"},					
+	{"#29593", "player.state.incapacitate"},
+	{"#29593", "player.state.disorient"},
+
+-- Racials start
+-- PVP Gnome
+	-- Escape Artist
+	{"20589", "player.state.snare"},						
+	{"20589", "player.state.root"},						
+
+-- PVP Human Racial
+	-- Every Man for Himself
+	{"59752", "player.state.fear"},						
+	{"59752", "player.state.incapacitate"},
+	{"59752", "player.state.disorient"},
+
+-- PVP Dwarf Racial
+	-- Stoneform cures Poison, Disease and Bleed
+	{"20594","player.dispellable(20594)"}, -- untested
+	
+-- PVP Undead Racial
+	-- Will of the Forsaken
+	{"7744", "player.state.charm"},						
+	{"7744", "player.state.fear"},						
+	{"7744", "player.state.sleep"},						
+
+-- OTHER Racials
+	-- Blood Elf Arcane Torrent by name each class has own spellID
+	{"Arcane Torrent","target.range <= 8"}, --untested
+	-- Troll Berserking on CD
+	{"26297"}, 
+	-- Orc Blood Fury onCD by name multiple spellIDs
+	{"Blood Fury"},
+	-- Draenei Gift of the Naaru **included for copy/paste**
+	{"Gift of the Naaru","player.health <= 80"},
+	-- Pandaren Quaking Palm SAP **included for copy/paste**
+	{"107079","modifier.interrupts"},
+	-- Goblin Rocket Barrage **included for copy/paste**
+	-- {"69041"},
+	-- Goblin Rocket Jump **included for copy/paste**
+	-- {"69070"},
+	-- Night Elf Shadowmeld **included for copy/paste**
+	-- {"58984"},
+	-- Tauren War Stomp **included for copy/paste**
+	{"20549","target.range <= 8"}, --untested
+-- Racials end	
+
 	-- Auto Target Enemy player
 	{ "!targetenemyplayer [noharm]",  
 		{	"!target.alive", 
@@ -67,7 +116,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 	},
 	-- Howl of Terror
 	{"5484",											
-		{	"target.spell(5484).range",
+		{	"target.range <= 10",
 			"!target.immune.fear",
 			"modifier.interrupts" 
 		}
@@ -79,16 +128,6 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 			"modifier.interrupts" 
 		}
 	},
-	
--- PVP Trink Insignia of the Alliance
-	{"#29593", "player.state.fear"},					-- Insignia of the Alliance
-	{"#29593", "player.state.incapacitate"},
-	{"#29593", "player.state.disorient"},
-
--- PVP Human Racial
-	{"59752", "player.state.fear"},						-- Every Man for Himself
-	{"59752", "player.state.incapacitate"},
-	{"59752", "player.state.disorient"},
 	
 -- Healing
 	-- Healthstone

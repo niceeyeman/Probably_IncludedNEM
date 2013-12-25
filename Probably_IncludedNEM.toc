@@ -9,11 +9,16 @@ nemcommonlib.lua
 ## Rotations
 AffLock.lua
 demonology.lua
+demonologyPvP.lua
 Destruction.lua
 Destructionpvp.lua
 DiscPriestPvP.lua
 elemental.lua
+elementalPvP.lua
 FireMage.lua
 FireMagePvP.lua
 Frost.lua
+FrostPvP.lua
 MavminsEnhan.lua
+ProtPaladin.lua
+ProtPaladinPvp.lua
