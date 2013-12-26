@@ -4,7 +4,7 @@
 -- **Based off Apoc Affliction PVP**
 
 
-ProbablyEngine.rotation.register_custom(265, "NEM Group", 
+ProbablyEngine.rotation.register_custom(265, "NEM Solo-PVP", 
 { 
 --InCombat
 -- PVP Trink Insignia of the Alliance
@@ -157,7 +157,7 @@ ProbablyEngine.rotation.register_custom(265, "NEM Group",
 	{
 		{	
 			{"Fel Flame","player.moving"},
-			{"Agony", 
+			{"!Agony", 
 				{	"!modifier.last",
 					"!target.debuff(Agony)"
 				}
@@ -237,5 +237,14 @@ ProbablyEngine.rotation.register_custom(265, "NEM Group",
 			"target.enemy",
 			"!target.debuff(172)"
 		},"target"
-	}, 
+	},
+	-- Auto Target Enemy player
+--	{ "!/targetenemyplayer [noharm]","!target.alive"}, 
+--	{ "!/targetenemyplayer [noharm]","!target.enemy"}, 
+--	{ "!/targetenemyplayer [noharm]","!target.exists"}, 
+
+	{ "!/targetenemy","!target.alive"}, 
+	{ "!/targetenemy","!target.enemy"}, 
+	{ "!/targetenemy","!target.exists"}, 
+	
 })

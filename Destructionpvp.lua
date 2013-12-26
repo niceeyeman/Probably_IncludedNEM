@@ -60,14 +60,14 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 -- Racials end	
 
 	-- Auto Target Enemy player
-	{ "!targetenemyplayer [noharm]",  
+	{ "!/targetenemyplayer [noharm]",  
 		{	"!target.alive", 
 			"!target.enemy",
 			"!target.exists",
 		}
 	},
 	-- Auto Target Enemy 
-	{ "!targetenemy [noharm]",  
+	{ "!/targetenemy [noharm]",  
 		{	"!target.alive", 
 			"!target.enemy",
 			"!target.exists",

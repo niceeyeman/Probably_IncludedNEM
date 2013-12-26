@@ -240,8 +240,10 @@ ProbablyEngine.rotation.register_custom(262, "Grouped_NEM",
 		"!player.buff(Ghost Wolf)"
 		}},
 		
-}, function()
+}, 
+function()
 ProbablyEngine.toggle.create('dispelmagic', 'Interface\\Icons\\spell_nature_nullifydisease', 'Auto Purge', 'Automatically dispel any magic buffs')
 ProbablyEngine.toggle.create('gwooc', 'Interface\\Icons\\spell_nature_spiritwolf', 'Auto Ghost Wolf', 'Automatically GW when moving OOC')
-end)
+end
+)
 

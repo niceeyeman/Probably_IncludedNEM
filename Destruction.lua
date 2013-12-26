@@ -50,6 +50,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 	{"5484",											
 		{	"target.range <= 10",
 			"!target.immune.fear",
+			"toggle.fears",
 			"modifier.interrupts" 
 		}
 	},
@@ -57,6 +58,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 	{"6789",											
 		{	"target.spell(6789).range",
 			"!target.immune.fear",
+			"toggle.fears",
 			"modifier.interrupts" 
 		}
 	},
@@ -194,4 +196,6 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 			"target.enemy",
 		},"target"
 	},
-})
+}, function()
+ProbablyEngine.toggle.create('fears', 'Interface\\Icons\\spell_shadow_possession', 'Fear4Interupts', 'Automatically use fear powers to stop casters')end
+)

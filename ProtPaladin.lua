@@ -14,24 +14,27 @@ ProbablyEngine.rotation.register_custom(66, "NEM Included",
 
     -- Dynamic Multitarget Seals
     -- Heal after Censure
-    { "Seal of Insight", {
-            "target.debuff(Censure).count = 5",
-            "target.debuff(Censure).duration > 5",
-            "player.seal != 3",
-            "!modifier.multitarget"
-    }},
+    { "Seal of Insight", 
+			{	"target.debuff(Censure).count = 5",
+				"target.debuff(Censure).duration > 5",
+				"player.seal != 3",
+				"!modifier.multitarget"
+			}
+	},
     -- Refresh Censure
-    { "Seal of Truth", {
-            "target.debuff(Censure).duration <= 5",
-            "player.seal != 1",
-            "!modifier.multitarget"
-    }},
+    { "Seal of Truth", 
+        {	"target.debuff(Censure).duration <= 5",
+			"player.seal != 1",
+			"!modifier.multitarget"
+		}
+	},
     -- Apply Censure
-    { "Seal of Truth", {
-            "target.debuff(Censure).count < 5",
+    { "Seal of Truth", 
+		{	"target.debuff(Censure).count < 5",
             "player.seal != 1",
             "!modifier.multitarget"
-    }},
+		}
+	},
 
     -- Taunts
     { "Reckoning", "modifier.taunt" },
@@ -62,12 +65,12 @@ ProbablyEngine.rotation.register_custom(66, "NEM Included",
 		{	"!player.buff(Eternal Flame)",
 			"player.holypower >= 3"
 		}, 	
-	}
+	},
     { "Eternal Flame", 										-- T3 Talent
 		{	"!player.buff(Eternal Flame)",
 			"player.health <= 50"
 		}, 	
-	}
+	},
 
     -- Survival
     { "Ardent Defender", "player.health < 15" },

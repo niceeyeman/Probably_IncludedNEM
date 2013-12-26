@@ -110,12 +110,12 @@ ProbablyEngine.rotation.register_custom(66, "NEM Included SoloPvP",
 		{	"!player.buff(Eternal Flame)",
 			"player.holypower >= 3"
 		}, 	
-	}
+	},
     { "Eternal Flame", 										-- T3 Talent
 		{	"!player.buff(Eternal Flame)",
 			"player.health <= 50"
 		}, 	
-	}
+	},
 
     -- Survival
     { "Ardent Defender", "player.health < 15" },
