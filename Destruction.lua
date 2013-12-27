@@ -51,7 +51,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 		{	"target.range <= 10",
 			"!target.immune.fear",
 			"toggle.fears",
-			"modifier.interrupts" 
+			--"modifier.interrupts" 
 		}
 	},
 	-- Mortal Coil
@@ -185,6 +185,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 	{"691",
 		{	"!pet.exists",
 		"!modifier.last",
+		"!player.moving",
 		"player.level >= 29"
 		}
 	},
@@ -192,6 +193,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 	{"712",
 		{	"!pet.exists",
 			"!modifier.last",
+			"!player.moving",
 			"player.level >= 20",
 			"player.level <= 28"
 		}
@@ -201,6 +203,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 	{"688",
 		{	"!pet.exists",
 			"!modifier.last",
+			"!player.moving",
 			"player.level <=19"
 		}
 	},
