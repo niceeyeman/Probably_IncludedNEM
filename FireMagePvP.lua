@@ -181,7 +181,7 @@ ProbablyEngine.rotation.register_custom(63, "NEM Fire PvP",
 		--{ "Arcane Brilliance", "!player.buff" },
 		{"1459","!player.buff"},
 		--{ "Molten Armor", "!player.buff(Molten Armor)" },
-		{"30482",,"!player.buff(30482)"},
+		{"30482","!player.buff(30482)"},
 		
 
 	-- Auto Target Enemy

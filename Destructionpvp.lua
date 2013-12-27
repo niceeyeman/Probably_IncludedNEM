@@ -156,7 +156,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 	},
 	-- Ember Tap 2 or more Embers	
 	{"114635",											
-		{	"player.embers >= 20",
+		{	"player.embers >= 10",
 			"player.health < 60"
 		}
 	},	
