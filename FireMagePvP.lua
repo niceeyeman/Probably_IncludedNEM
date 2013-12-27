@@ -181,8 +181,8 @@ ProbablyEngine.rotation.register_custom(63, "NEM Fire PvP",
 		--{ "Arcane Brilliance", "!player.buff" },
 		{"1459","!player.buff"},
 		--{ "Molten Armor", "!player.buff(Molten Armor)" },
-		{"30482","!player.buff(30482)"},
-
+		{"30482",,"!player.buff(30482)"},
+		
 
 	-- Auto Target Enemy
 	{ "!/targetenemy [noharm]", 
@@ -195,7 +195,7 @@ ProbablyEngine.rotation.register_custom(63, "NEM Fire PvP",
 	},
 	
 	-- Autoattacks
-			{ -- Evo > PoM > Pyro
+--[[			{ -- Evo > PoM > Pyro
 				{
 					-- Evocation for buff
 					{ "Evocation","!player.buff(Invoker's Energy)"},
@@ -217,7 +217,7 @@ ProbablyEngine.rotation.register_custom(63, "NEM Fire PvP",
 					"target.alive", 
 					"target.enemy",
 					}, 
-			}, -- /Evo > PoM > Pyro 
+			}, -- /Evo > PoM > Pyro ]] 
 			-- Or just Snare it	
 			-- Frostfire Bolt for snare
 			{"44614", 

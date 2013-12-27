@@ -4,9 +4,6 @@
 -- Based off Included
 -- Some code "borrowed" from Charus https://probablyengine.com/forum/viewtopic.php?id=841
 --  and Chunky https://probablyengine.com/forum/viewtopic.php?id=718
--- ******
--- NEED nemcommonlib github https://github.com/niceeyeman/Probably_nemcommonlib
--- ******
 
 ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp", 
 {
@@ -89,6 +86,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 	-- Dark Intent Charus
 	{ "109773", 										
 		{ 	"!player.buff(109773)",
+			"player.level >= 82",
 			 "!@nemcommon.tenSpellpower"					--10% spell power any
 		}
 	},
@@ -250,7 +248,11 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 		--Incinerate (filler)
 		{ "29722"},											
 		--Incinerate **target moves out of range while casting fear
-		{ "!29722","!target.spell(5782).range"},											
+		{ "!29722",
+			{	"target.spell(29722).range",
+				"!target.spell(5782).range"
+			}
+		},											
 		--Fel Flame when Moving
 		{ "!77799", "player.moving" },						
 		
@@ -262,17 +264,24 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 	-- Dark Intent Charus
 	{ "109773",  										
 		{ 	"!player.buff(109773)",
+			"player.level >= 82",
 			"!@nemcommon.tenSpellpower"					--10% spell power any
 		}
-	},					
+	},
+	{ "Dark Intent",  										
+		{ 	"!player.buff(Dark Intent)",
+			"player.spell(Dark Intent).exists",
+			"!@nemcommon.tenSpellpower"					--10% spell power any
+		}
+	},	
 	
 	-- Summon Healthstone if < 3
-	{ "6201", 
+	{ "6201",
 		{ 	"@nemcommon.Healthstone",
 			"!modifier.last" 
 		}
 	}, 
-	  	
+		  	
 	--  Fel Hunter
 	{"691",{"!pet.exists","!modifier.last"}},
 	--  Succubus till Fel Hunter
@@ -295,7 +304,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 	
 	-- Immolate
 	{ "348",
-		{	"player.spell(348).exists",
+		{	--"player.spell(348).exists",
 			"target.spell(348).range",
 			"target.exists",
 			"target.enemy",
