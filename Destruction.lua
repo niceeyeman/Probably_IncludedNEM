@@ -175,16 +175,35 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 	},					
 	
 	-- Summon Healthstone if < 3
-	{ "6201", 
+	{ "6201",
 		{ 	"@nemcommon.Healthstone",
 			"!modifier.last" 
 		}
 	}, 
-	  	
-	--  fel hunter
-	{"691","!pet.exists"},
-	-- imp till Fel Hunter
-	{"688","!pet.exists"},	
+		  	
+	--  Fel Hunter
+	{"691",
+		{	"!pet.exists",
+		"!modifier.last",
+		"player.level >= 29"
+		}
+	},
+	--  Succubus till Fel Hunter
+	{"712",
+		{	"!pet.exists",
+			"!modifier.last",
+			"player.level >= 20",
+			"player.level <= 28"
+		}
+	},
+
+	-- imp till Succubus
+	{"688",
+		{	"!pet.exists",
+			"!modifier.last",
+			"player.level <=19"
+		}
+	},
 
 -- Focus Macro
 	{ "!/focus [target=mouseover]", "modifier.lcontrol" },
