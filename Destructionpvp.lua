@@ -175,6 +175,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 	{"5782",											
 		{	"!target.debuff(fear)",
 			"target.spell(5782).range",
+			"!target.immune.fear",
 			"!modifier.last",
 			"toggle.fears",
 		}
@@ -216,7 +217,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 		},
 		
 		--Incinerate with Proc
-		{ "29722", "player.buff(108563)" },					
+		{ "!29722", "player.buff(108563)" },					
 		--Incinerate with Proc when moving
 		{ "!29722", 										
 			{	"player.moving",
