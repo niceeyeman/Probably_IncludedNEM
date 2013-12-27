@@ -19,7 +19,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 -- Racials start
 -- PVP Gnome
 	-- Escape Artist
-	{"20589", "player.state.snare"},						
+	{"20589", "player.state.snare"},						 
 	{"20589", "player.state.root"},						
 
 -- PVP Human Racial
@@ -42,11 +42,25 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 	-- Blood Elf Arcane Torrent by name each class has own spellID
 	{"Arcane Torrent","target.range <= 8"}, --untested
 	-- Troll Berserking on CD
-	{"26297"}, 
+	{"26297",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(26297)"
+		}
+	}, 
 	-- Orc Blood Fury onCD by name multiple spellIDs
-	{"Blood Fury"},
+	{"Blood Fury",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(Blood Fury)"
+		}
+	},
 	-- Draenei Gift of the Naaru **included for copy/paste**
-	{"Gift of the Naaru","player.health <= 80"},
+	{"Gift of the Naaru",
+		{	"!modifier.last"
+			,"player.health <= 80"
+		}
+	},
 	-- Pandaren Quaking Palm SAP **included for copy/paste**
 	{"107079","modifier.interrupts"},
 	-- Goblin Rocket Barrage **included for copy/paste**
@@ -56,23 +70,20 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 	-- Night Elf Shadowmeld **included for copy/paste**
 	-- {"58984"},
 	-- Tauren War Stomp **included for copy/paste**
-	{"20549","target.range <= 8"}, --untested
+	{"20549",
+		{	"target.range <= 8",
+			"!modifier.last"
+		}
+	}, --untested
 -- Racials end	
 
-	-- Auto Target Enemy player
-	{ "!/targetenemyplayer [noharm]",  
-		{	"!target.alive", 
-			"!target.enemy",
-			"!target.exists",
-		}
-	},
+	-- clear target if range > 40
+	{"!/cleartarget","!target.spell(29722).range"},
+	
 	-- Auto Target Enemy 
-	{ "!/targetenemy [noharm]",  
-		{	"!target.alive", 
-			"!target.enemy",
-			"!target.exists",
-		}
-	},
+	{ "!/targetenemy","!target.alive"}, 
+	{ "!/targetenemy","!target.enemy"}, 
+	{ "!/targetenemy","!target.exists"}, 
 	
 -- Buff
 	-- Dark Intent Charus
@@ -138,22 +149,36 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 			"target.spell(6789).range"
 		}
 	},
+	-- Lifeblood on cd for haste
+	{"Lifeblood",
+		{	"!modifier.last",
+			"player.health < 70",
+			"!player.buff(Lifeblood)"
+		}
+	},
 	-- Ember Tap 2 or more Embers	
 	{"114635",											
 		{	"player.embers >= 20",
 			"player.health < 60"
 		}
-	},
+	},	
+	-- Drain Life
+	{"689","player.health < 60"},
 
-	-- Lifeblood on cd for heal/haste
-	{"Lifeblood","!modifier.last"},
+	-- Lifeblood on cd for haste 15 sec fight
+	{"Lifeblood",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(Lifeblood)"
+		}
+	},
 	
 	-- Fear auto fire
 	{"5782",											
-		{	"target.range <= 7",
-			"!target.debuff(fear)",
+		{	"!target.debuff(fear)",
+			"target.spell(5782).range",
 			"!modifier.last",
-			"!target.immune.fear"
+			"toggle.fears",
 		}
 	},
 	
@@ -175,7 +200,11 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 			}
 		},	
 		--Rain of Fire
-		{ "5740", "!modifier.last", "ground" },	
+		{ "5740", 
+			{	"modifier.multitarget",
+				"!modifier.last"
+			}, 	"ground" 
+		},	
 	-- Single Target DPS
 		-- ShadowBurn from Chunky
 		{ 													
@@ -197,7 +226,11 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 			}
 		},					
 		-- Conflagrate 2 charges
-		{ "17962","spell.charges(17962) =2"},				
+		{ "17962",
+			{	"spell.charges(17962) =2",
+				"target.debuff(348)"
+			}
+		},				
 		-- Chaos Bolt (Target Health >20%) Chunky
 		{													
 			{ 
@@ -206,16 +239,18 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 						"player.embers >= 35" 
 					}
 				}, 
-			{ "116858", "@nemcommon.tempBuffs" }, 			-- Blood of Y'Shaarj
+			{ "!116858", "@nemcommon.tempBuffs" }, 			-- Blood of Y'Shaarj
 			},
 			{ 	"target.health > 20",  
 				"!player.moving" 
 			}
 		},
 		--Conflagrate
-		{ "17962" },										
+		{ "17962","target.debuff(348)" },										
 		--Incinerate (filler)
 		{ "29722"},											
+		--Incinerate **target moves out of range while casting fear
+		{ "!29722","!target.spell(5782).range"},											
 		--Fel Flame when Moving
 		{ "!77799", "player.moving" },						
 		
@@ -238,8 +273,13 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 		}
 	}, 
 	  	
-	--  fel hunter
-	{"691","!pet.exists"},								
+	--  Fel Hunter
+	{"691",{"!pet.exists","!modifier.last"}},
+	--  Succubus till Fel Hunter
+	{"712",{"!pet.exists","!modifier.last"}},
+
+	-- imp till Succubus
+	{"688",{"!pet.exists","!modifier.last"}},
 
 -- Focus Macro
 	{ "!/focus [target=mouseover]", "modifier.lcontrol" },
@@ -262,20 +302,10 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 		},"target"
 	},			
   
-	-- Auto Target Enemy player
-	{ "!targetenemyplayer [noharm]",  
-		{	"!target.alive", 
-			"!target.enemy",
-			"!target.exists",
-		}
-	},
-
 	-- Auto Target Enemy 
-	{ "!targetenemy [noharm]",  
-		{	"!target.alive", 
-			"!target.enemy",
-			"!target.exists",
-		}
-	},
+	{ "!/targetenemy","!target.alive",}, 
+	{ "!/targetenemy","!target.enemy"}, 
+	{ "!/targetenemy","!target.exists"}, 
 
-})
+},function()
+ProbablyEngine.toggle.create('fears', 'Interface\\Icons\\spell_shadow_possession', 'Fear4Interupts', 'Automatically use fear powers to stop casters')end)

@@ -68,7 +68,8 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 	{"#5512", "player.health < 45"},					
 	-- Mortal Coil
 	{"6789",											
-		{	"player.health <88",
+		{	"player.health <38",
+			"toggle.fears",
 			"target.spell(6789).range"
 		}
 	},
@@ -78,8 +79,11 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 			"player.health < 60"
 		}
 	},
+	-- Drain Life
+	{"689","player.health < 60"},
+	
 	-- Lifeblood on cd for heal/haste
-	{"Lifeblood"},
+	{"Lifeblood","!modifier.last"},
 	
 	-- Fear Right Shift
 	{"5782",											
@@ -132,7 +136,11 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 		}
 	},					
 	-- Conflagrate 2 charges
-	{ "17962","spell.charges(17962) = 2"},				
+		{ "17962",
+			{	"spell.charges(17962) =2",
+				"target.debuff(348)"
+			}
+		},				
 	-- Chaos Bolt (Target Health >20%) Chunky
 	{
 		{ 												
@@ -141,14 +149,14 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 					"player.embers >= 35" 
 				}
 			}, 
-			{ "116858", "@nemcommon.tempBuffs" }, 			-- Blood of Y'Shaarj
+			{ "!116858", "@nemcommon.tempBuffs" }, 			-- Blood of Y'Shaarj
 		},
 		{ 	"target.health > 20",  
 			"!player.moving" 
 		}
 	},
 	--Conflagrate
-	{ "17962" },										
+	{ "17962","target.debuff(348)" },										
 	--Incinerate (filler)
 	{ "29722"},											
 	--Fel Flame
@@ -174,7 +182,9 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM]",
 	}, 
 	  	
 	--  fel hunter
-	{"691","!pet.exists"},								
+	{"691","!pet.exists"},
+	-- imp till Fel Hunter
+	{"688","!pet.exists"},	
 
 -- Focus Macro
 	{ "!/focus [target=mouseover]", "modifier.lcontrol" },

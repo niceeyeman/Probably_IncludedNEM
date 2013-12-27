@@ -58,7 +58,12 @@ ProbablyEngine.rotation.register_custom(265, "NEM Solo-PVP",
 
 --Buffs 
 
-	{"Dark Intent","!player.buff(Dark Intent)"},
+	{-- Dark Intent Charus
+	"109773", 										
+		{ 	"!player.buff(109773)",
+			"!@nemcommon.tenSpellpower"					--10% spell power any
+		}
+	},
 	{"Blood Horror","!player.buff(Blood Horror)"},
 	{"Dark Soul: Misery","!player.buff(Dark Soul: Misery)"},
 	{"Twilight Ward",
