@@ -244,7 +244,12 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 			}
 		},
 		--Conflagrate
-		{ "17962","target.debuff(348)" },										
+		{ "17962",
+			{	"target.debuff(348)",
+				"player.spell(Conflagrate).charges > 1", 
+				"!player.buff(Backdraft)" 
+			}
+		},										
 		--Incinerate (filler)
 		{ "29722"},											
 		--Incinerate **target moves out of range while casting fear
@@ -283,12 +288,28 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 	}, 
 		  	
 	--  Fel Hunter
-	{"691",{"!pet.exists","!modifier.last"}},
+	{"691",
+		{	"!pet.exists",
+		"!modifier.last",
+		"player.level >= 29"
+		}
+	},
 	--  Succubus till Fel Hunter
-	{"712",{"!pet.exists","!modifier.last"}},
+	{"712",
+		{	"!pet.exists",
+			"!modifier.last",
+			"player.level >= 20",
+			"player.level <= 28"
+		}
+	},
 
 	-- imp till Succubus
-	{"688",{"!pet.exists","!modifier.last"}},
+	{"688",
+		{	"!pet.exists",
+			"!modifier.last",
+			"player.level <=19"
+		}
+	},
 
 -- Focus Macro
 	{ "!/focus [target=mouseover]", "modifier.lcontrol" },
