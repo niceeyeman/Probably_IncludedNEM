@@ -102,7 +102,8 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 	-- Curse of Enfeeblement
 	{"109466",											
 		{	"!target.debuff(1490)",
-			"!target.debuff(109466)"
+			"!target.debuff(109466)",
+			"!modifier.last(1490)"
 		}
 	}, 
 		
@@ -186,27 +187,8 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 			"toggle.fears",
 		}
 	},
-	--[[{"/petattack",
-		{
-			(function() 
-				if not UnitAffectingCombat("pet") 
-				then return true 
-				else return false 
-			end 
-			)
-		}
-	},
-	]]
-	{ "!/petattack", 
-			(function() 
-				if UnitAffectingCombat("pet")
-				
-				then print("ok")
-				return false end
-				print ("PA")
-				return true 
-				end)	
-	},
+	-- pet attack if not attacking
+	{ "!/petattack","@nemcommon.petNotfighting"},
 
 	-- Havoc on Focus
 	{ "80240", 										
