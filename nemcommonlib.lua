@@ -4,12 +4,19 @@
 
 local nemcommon = { }
 --[[ ToC
+	Pet stuff
 	Buff checks
 	Debuff checks
 	Mechanics checks
 	Item checks
 	]]
-	
+-- **** Pet func	
+function nemcommon.petNotfighting(unit)
+	if (UnitAffectingCombat("pet")) 
+		then return false end
+		return true 
+end	
+
 -- **** Buff checks **** @
 function nemcommon.targNotfocus()
 		if (UnitIsUnit("target", "focus")) then

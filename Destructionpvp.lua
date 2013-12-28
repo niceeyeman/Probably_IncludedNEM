@@ -161,7 +161,13 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 		}
 	},	
 	-- Drain Life
-	{"689","player.health < 60"},
+	{"689",
+		{	"target.spell(689).range",
+			"!player.casting",
+			"!player.moving",
+			"player.health < 60"
+		}
+	},
 
 	-- Lifeblood on cd for haste 15 sec fight
 	{"Lifeblood",
@@ -180,7 +186,28 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 			"toggle.fears",
 		}
 	},
-	
+	--[[{"/petattack",
+		{
+			(function() 
+				if not UnitAffectingCombat("pet") 
+				then return true 
+				else return false 
+			end 
+			)
+		}
+	},
+	]]
+	{ "!/petattack", 
+			(function() 
+				if UnitAffectingCombat("pet")
+				
+				then print("ok")
+				return false end
+				print ("PA")
+				return true 
+				end)	
+	},
+
 	-- Havoc on Focus
 	{ "80240", 										
 		{	"focus.alive",
