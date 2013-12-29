@@ -36,6 +36,16 @@ function nemcommon.tenSpellpower(thresholdtsp)
 	return false
 end
 
+function nemcommon.tenStam(thresholdtenstam)
+	local temp_buffstenstam = {21562,109773,469,90364}
+	local timertenstam = thresholdtenstam or 3
+	for i=1,#temp_buffstenstam do
+		if UnitBuff("player",GetSpellInfo(temp_buffstenstam[i])) then
+			if select(7,UnitBuff("player",GetSpellInfo(temp_buffstenstam[i]))) - GetTime() <= timertenstam then return true end
+		end
+	end
+	return false
+end
 -- Hysteria functions added a couple from chunky's list
 -- checks for short duration buffs
 function nemcommon.tempBuffs(threshold)
