@@ -90,6 +90,12 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 			 "!@nemcommon.tenSpellpower"					--10% spell power any
 		}
 	},
+	-- Blood Horror 111397
+	{"111397",
+		{	"player.health > 85",
+			"!player.buff(111397)"
+		}
+	},
 	
 -- Curses  foiled again	
 	-- Curse of Elements Charus
