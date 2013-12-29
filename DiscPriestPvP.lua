@@ -144,7 +144,7 @@ ProbablyEngine.rotation.register_custom(256, "NEM SoloPvP",
 	--Mindbender 123040 lvl 45 Talent 
 	{"Mindbender",
 		{	"player.mana <= 85",
-			"target.range <= 40"
+			"target.spell(123040).range"
 		}, 
 	},
 	--Shadowfiend 34433 lvl 42 
@@ -205,24 +205,28 @@ ProbablyEngine.rotation.register_custom(256, "NEM SoloPvP",
 	--Healing Rotation
 		--Power Word: Shield 17/Weakened Soul 6788 lvl 5
 		{"Power Word: Shield", 
-			{	"!lowest.debuff(Weakened Soul)", 					
+			{	"!lowest.debuff(6788)", 					
 				"lowest.health <= 90",
-				"lowest.range <= 40"
+				"lowest.spell(17).range"
 			}, "lowest" 
 		},
+		-- Renew 139 lvl 26
 		{"Renew", 
 			{	"!lowest.buff(Renew)", 
 				"lowest.health <= 90",
-				"lowest.range <= 40" 
+				"lowest.spell(139).range" 
 			},	"lowest"
 		},
+		-- Flash Heal 2061 lvl 7
 		{"Flash Heal", 
 			{	"lowest.range <= 40",
 				"lowest.health <= 20" 
 			},	"lowest" 
 		},
+		-- Binding Heal 32546 lvl 48
 		{"Binding Heal", 
-			{	"lowest.range <= 40",
+			{	"!lowest.player",
+				"lowest.spell(32546).range",
 				"lowest.health <= 40" 
 			},	"lowest"
 		},
