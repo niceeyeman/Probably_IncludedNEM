@@ -35,7 +35,8 @@ function nemcommon.tenSpellpower(thresholdtsp)
 	end
 	return false
 end
-
+-- Checks player for PW: Fortitude,Dark Intent,Commanding Shout, Qiraji Fortitude 
+-- True if any duration > 3
 function nemcommon.tenStam(thresholdtenstam)
 	local temp_buffstenstam = {21562,109773,469,90364}
 	local timertenstam = thresholdtenstam or 3
