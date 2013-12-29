@@ -178,6 +178,19 @@ ProbablyEngine.rotation.register_custom(256, "NEM SoloPvP",
 },{
 
 --Out of Combat 
+		-- Auto Target Enemy 
+	{ "!/targetenemy","!target.alive"}, 
+	{ "!/targetenemy","!target.enemy"}, 
+	{ "!/targetenemy","!target.exists"}, 
+	
+    --Shadow Word: Pain 589 lvl 3
+	{"589", 		
+		{	"target.spell(589).range",
+			"target.exists",
+			"target.enemy",
+		},"target"
+	},			
+
 
 	-- Buffs
 		--Inner Fire 588 lvl 9
