@@ -121,13 +121,11 @@ ProbablyEngine.rotation.register_custom(256, "NEM SoloPvP", {
 	--Mindbender 123040 lvl 45 Talent ON MOUSE
 	{"Mindbender",{
 		"player.mana <= 85",
-		"target.range <= 40"},
-		"ground"}, 
+		"target.range <= 40"}, 
 	--Shadowfiend 34433 lvl 42 ON MOUSE
 	{"Shadowfiend",{
 		"player.mana <= 85",
 		"target.range <= 40"},
-		"ground"},
     
 --Survival Aoe's
 	--Psychic Scream 8122
