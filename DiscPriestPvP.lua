@@ -50,7 +50,7 @@ ProbablyEngine.rotation.register_custom(256, "NEM SoloPvP",
 -- Racials start
 -- PVP Gnome
 	-- Escape Artist
-	{"20589", "player.state.snare"},						
+	{"20589", "player.state.snare"},						 
 	{"20589", "player.state.root"},						
 
 -- PVP Human Racial
@@ -73,11 +73,25 @@ ProbablyEngine.rotation.register_custom(256, "NEM SoloPvP",
 	-- Blood Elf Arcane Torrent by name each class has own spellID
 	{"Arcane Torrent","target.range <= 8"}, --untested
 	-- Troll Berserking on CD
-	{"26297"}, 
+	{"26297",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(26297)"
+		}
+	}, 
 	-- Orc Blood Fury onCD by name multiple spellIDs
-	{"Blood Fury"},
+	{"Blood Fury",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(Blood Fury)"
+		}
+	},
 	-- Draenei Gift of the Naaru **included for copy/paste**
-	{"Gift of the Naaru","player.health <= 80"},
+	{"Gift of the Naaru",
+		{	"!modifier.last"
+			,"player.health <= 80"
+		}
+	},
 	-- Pandaren Quaking Palm SAP **included for copy/paste**
 	{"107079","modifier.interrupts"},
 	-- Goblin Rocket Barrage **included for copy/paste**
@@ -87,7 +101,11 @@ ProbablyEngine.rotation.register_custom(256, "NEM SoloPvP",
 	-- Night Elf Shadowmeld **included for copy/paste**
 	-- {"58984"},
 	-- Tauren War Stomp **included for copy/paste**
-	{"20549","target.range <= 8"}, --untested
+	{"20549",
+		{	"target.range <= 8",
+			"!modifier.last"
+		}
+	}, --untested
 -- Racials end	
 	
 --Survival
@@ -126,14 +144,15 @@ ProbablyEngine.rotation.register_custom(256, "NEM SoloPvP",
 	--Mindbender 123040 lvl 45 Talent 
 	{"Mindbender",
 		{	"player.mana <= 85",
-			"target.range <= 40"}, 
-	}
+			"target.range <= 40"
+		}, 
+	},
 	--Shadowfiend 34433 lvl 42 
 	{"Shadowfiend",
 		{	"player.mana <= 85",
 			"target.range <= 40"
 		},
-    }
+    },
 --Survival Aoe's
 	--Psychic Scream 8122
 	{"Psychic Scream","modifier.lshift"}, 
