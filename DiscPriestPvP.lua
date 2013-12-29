@@ -31,7 +31,11 @@ ProbablyEngine.rotation.register_custom(256, "NEM SoloPvP",
 	--Archangel 81700 lvl 50
 	{"Archangel", "player.buff(Evangelism).count=5"},	
 	--Power Word: Fortitude 21562 lvl 22
-	{"Power Word: Fortitude", "!player.buff(Power Word: Fortitude)"}, 				
+		{"Power Word: Fortitude",
+			{	"@nemcommon.tenStam",
+				"!player.buff(Power Word: Fortitude).any"
+			}
+		}, 				
 	--Power Word: Shield 17/Weakened Soul 6788 lvl 5
 	{"Power Word: Shield", "!player.debuff(Weakened Soul)"}, 					
 	--Fear Ward 6346 lvl 54
@@ -200,7 +204,11 @@ ProbablyEngine.rotation.register_custom(256, "NEM SoloPvP",
 		--Archangel 81700 lvl 50
 		{"Archangel", "player.buff(Evangelism).count=5"},	
 		--Power Word: Fortitude 21562 lvl 22
-		{"Power Word: Fortitude", "!player.buff(Power Word: Fortitude)"}, 				
+		{"Power Word: Fortitude",
+			{	"@nemcommon.tenStam",
+				"!player.buff(Power Word: Fortitude).any"
+			}
+		}, 				
  
 	--Healing Rotation
 		--Power Word: Shield 17/Weakened Soul 6788 lvl 5
