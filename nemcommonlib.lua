@@ -23,6 +23,18 @@ function nemcommon.targNotfocus()
 		return false end
 	return true
 end
+-- Checks player for Mark of the Wild,Legacy of the Emperor,Blessing of Kings,Embrace of the Shale Spider
+-- True if duration > 3
+function nemcommon.fiveMainstats(thresholdfms)
+	local temp_buffsfms = {1126,115921,20217,90363}
+	local timerfms = thresholdfms or 3
+	for i=1,#temp_buffsfms do
+		if UnitBuff("player",GetSpellInfo(temp_buffsfms[i])) then
+			if select(7,UnitBuff("player",GetSpellInfo(temp_buffsfms[i]))) - GetTime() <= timerfms then return true end
+		end
+	end
+	return false
+end
 -- Checks player for Arcane/Dalaran Brilliance,Burning Wrath, Still Water
 -- True if duration > 3
 function nemcommon.tenSpellpower(thresholdtsp)
