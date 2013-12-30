@@ -25,6 +25,29 @@ function nemcommon.targNotfocus()
 end
 -- Checks player for Leader of the Pack,Arcane/dalaran Brilliance,Lot White Tiger, Hunter Pet Buffs
 -- True if duration > 3
+function nemcommon.flySerpent(unit)
+	local temp_buffsfly = {373,332,305}
+	for i=1,#temp_buffsfly do
+		if UnitAura("player",GetSpellInfo(temp_buffsfly[i])) then
+			return true end
+		
+	end
+	return false
+end
+--[[ Origanal
+function nemcommon.flySerpent(thresholdfly)
+	local temp_buffsfly = {373,332,305}
+	local timerfly = thresholdfly or 3
+	for i=1,#temp_buffsfly do
+		if UnitAura("player",GetSpellInfo(temp_buffsfly[i])) then
+			if select(7,UnitAura("player",GetSpellInfo(temp_buffsfly[i]))) - GetTime() <= timerfly then return true end
+		end
+	end
+	return false
+end
+]]
+-- Checks player for Leader of the Pack,Arcane/dalaran Brilliance,Lot White Tiger, Hunter Pet Buffs
+-- True if duration > 3
 function nemcommon.fiveCrit(thresholdfc)
 	local temp_buffsfc = {17007,1459,61316,116781,24604,90309,126373,126309}
 	local timerfc = thresholdfc or 3
@@ -35,6 +58,7 @@ function nemcommon.fiveCrit(thresholdfc)
 	end
 	return false
 end
+
 -- Checks player for Mark of the Wild,Legacy of the Emperor,Blessing of Kings,Embrace of the Shale Spider
 -- True if duration > 3
 function nemcommon.fiveMainstats(thresholdfms)

@@ -128,14 +128,14 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 	{"103135",											
 		{	"target.spell(103135).range",
 			"target.casting.time <= 2",
-			"player.interruptAt(50)"
+			"target.interruptsAt(50)"
 		}
 	},
 	-- Felhunter: Spell Lock < 2 sec 15%
 	{"103135",											
 		{	"target.spell(103135).range",
 			"target.casting.time <= 2",
-			"player.interruptAt(50)"
+			"target.interruptsAt(50)"
 		}
 	},
 	-- Howl of Terror
@@ -150,7 +150,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 		{	"target.spell(6789).range",
 			"!target.immune.fear",
 			"target.casting.time <= 2",
-			"player.interruptAt(50)"
+			"target.interruptsAt(50)"
 		}
 	},
 	-- Mortal Coil > 2 sec 15%
@@ -158,7 +158,7 @@ ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp",
 		{	"target.spell(6789).range",
 			"!target.immune.fear",
 			"target.casting.time > 2",
-			"player.interruptAt(15)"
+			"target.interruptsAt(15)"
 		}
 	},
 	
