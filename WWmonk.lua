@@ -4,7 +4,10 @@
 -- Created on Nov 18th 2013 10:23 am
 -- Based on Koha's
 ProbablyEngine.rotation.register_custom(269, "NEM", {
-
+-- Flying Serpent Kick   Landing
+	{"101545",
+		{	"target.spell(116705).range", --SpearHandStrike for range check
+			
 --Buff
 	-- Legacy of the Emperor 115921 lvl 22
 	{ "Legacy of the Emperor", "@nemcommon.fiveMainstats"},
@@ -16,6 +19,7 @@ ProbablyEngine.rotation.register_custom(269, "NEM", {
 	{ "!/targetenemy","!target.enemy"}, 
 	{ "!/targetenemy","!target.exists"}, 
 
+
 --Interupts
 	{
 		{
@@ -25,7 +29,7 @@ ProbablyEngine.rotation.register_custom(269, "NEM", {
 			{ "Ring of Peace", "player" },
 		},
 		{	"target.casting.time <= 2",
-			"player.interruptAt(50)"
+			"target.interruptsAt(50)"
 		}
 	},
 	{
@@ -36,7 +40,7 @@ ProbablyEngine.rotation.register_custom(269, "NEM", {
 			{ "Ring of Peace", "player" },
 		},
 		{	"target.casting.time > 2",
-			"player.interruptAt(20)"
+			"target.interruptsAt(20)"
 		}
 	},
 
