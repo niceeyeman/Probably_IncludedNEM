@@ -9,7 +9,7 @@ ProbablyEngine.rotation.register_custom(269, "NEM", {
 	-- Legacy of the Emperor 115921 lvl 22
 	{ "Legacy of the Emperor", "@nemcommon.fiveMainstats"},
 	-- Legacy of the White Tiger 116781 lvl 81
-	{ "Legacy of the White Tiger", "!player.buff(Legacy of the White Tiger)" },
+	{ "Legacy of the White Tiger","@nemcommon.fiveCrit"},
 
 	-- Auto Target Enemy 
 	{ "!/targetenemy","!target.alive",}, 
@@ -109,28 +109,41 @@ ProbablyEngine.rotation.register_custom(269, "NEM", {
 -- Racials end	
 
 --Self Healing T2
-{ "Zen Sphere", "!player.buff(Zen Sphere)", "player" },
-{ "Chi Burst" },
-{ "Chi Wave" },
-{ "#trinket1" },
-{ "#trinket2" },
-{ "#gloves"},
+	{ "Zen Sphere", "!player.buff(Zen Sphere)", "player" },
+	{ "Chi Burst" },
+	{ "Chi Wave" },
+	{ "#trinket1" },
+	{ "#trinket2" },
+	{ "#gloves"},
+	-- Healthstone
+	{"#5512", "player.health < 65"},					
+
 --Shared Rotations
-{ "Expel Harm", "player.health < 80" },
-{ "Tigereye Brew", "player.buff(Tigereye Brew).count >= 10" },
-{ "Energizing Brew", { "player.energy < 20", "player.spell(Fists of Fury).cooldown" }},
-{ "Touch of Karma", "player.health < 90" },
-{ "Grapple Weapon", "modifier.alt" },
+	{ "Expel Harm", "player.health < 80" },
+	{ "Tigereye Brew", "player.buff(Tigereye Brew).count >= 10" },
+	{ "Energizing Brew", { "player.energy < 20", "player.spell(Fists of Fury).cooldown" }},
+	{ "Touch of Karma", "player.health < 90" },
+	{ "Grapple Weapon", "modifier.alt" },
 
 --Rotation Single Target/multi target
-{ "Spinning Crane Kick", { "modifier.multitarget", "!player.buff(Rushing Jade Wind)" }},
-{ "Rising Sun Kick" },
-{ "Tiger Palm", "player.buff(Combo Breaker: Tiger Palm)" },
-{ "Tiger Palm", "player.buff(Tiger Power).duration < 3" },
-{ "Fists of Fury", { "player.energy <= 40", "player.buff(Tiger Power).duration > 5", "!player.moving", "!player.buff(Energizing Brew)" }},
-{ "Blackout Kick", "player.buff(Combo Breaker: Blackout Kick)" },
-{ "Blackout Kick", "player.chi >= 3" },
-{ "Jab" },
+	{ "Tiger Palm", "player.buff(Tiger Power).duration < 3" },
+	{ "Spinning Crane Kick", 
+		{ 	"modifier.multitarget", 
+			"!player.buff(Rushing Jade Wind)" 
+		}
+	},
+	{ "Rising Sun Kick" },
+	{ "Tiger Palm", "player.buff(Combo Breaker: Tiger Palm)" },
+	{ "Fists of Fury", 
+		{ 	"player.energy <= 40", 
+			"player.buff(Tiger Power).duration > 5", 
+			"!player.moving", 
+			"!player.buff(Energizing Brew)" 
+		}
+	},
+	{ "Blackout Kick", "player.buff(Combo Breaker: Blackout Kick)" },
+	{ "Blackout Kick", "player.chi >= 3" },
+	{ "Jab" },
 
 
 -- Out Of Combat
@@ -139,6 +152,6 @@ ProbablyEngine.rotation.register_custom(269, "NEM", {
 	-- Legacy of the Emperor 115921 lvl 22
 	{ "Legacy of the Emperor", "@nemcommon.fiveMainstats"},
 	-- Legacy of the White Tiger 116781 lvl 81
-	{ "Legacy of the White Tiger", "!player.buff(Legacy of the White Tiger)" },
-
+	{ "Legacy of the White Tiger","@nemcommon.fiveCrit"},
+  }
 })
