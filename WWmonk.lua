@@ -3,16 +3,33 @@
 -- Custom Brewmaster Monk Rotation
 -- Created on Nov 18th 2013 10:23 am
 -- Based on Koha's
-ProbablyEngine.rotation.register_custom(269, "NEM", {
--- Flying Serpent Kick   Landing
+ProbablyEngine.rotation.register_custom(269, "NEM", 
+{
+-- Flying Serpent Kick  to Landing
 	{"101545",
-		{	"target.spell(116705).range", --SpearHandStrike for range check
+		{	"target.spell(116705).range", 		-- Spear Hand Strike for range check
+			"@nemcommon.flySerpentT",			-- FSK flying?
+			"toggle.fly",
+			--"@nemcommon.debug('Kick Land')"
+		}
+	}, 
 			
 --Buff
 	-- Legacy of the Emperor 115921 lvl 22
-	{ "Legacy of the Emperor", "@nemcommon.fiveMainstats"},
+	{ "Legacy of the Emperor", 
+		{	"!player.buff(115921)",
+			"!player.buff(117666)",
+			"!modifier.last",
+			--"@nemcommon.fiveMainstats"
+		}
+	},
 	-- Legacy of the White Tiger 116781 lvl 81
-	{ "Legacy of the White Tiger","@nemcommon.fiveCrit"},
+	{ "Legacy of the White Tiger",
+		{	"!player.buff(116781)",
+			"!modifier.last",
+			--"@nemcommon.fiveCrit"
+		}
+	},
 
 	-- Auto Target Enemy 
 	{ "!/targetenemy","!target.alive",}, 
@@ -153,9 +170,51 @@ ProbablyEngine.rotation.register_custom(269, "NEM", {
 -- Out Of Combat
 },
 {
+-- Flying Serpent Kick  to Landing
+	{"101545",
+		{	"target.spell(116705).range", 		-- Spear Hand Strike for range check
+			"@nemcommon.flySerpentT",			-- FSK flying?
+			"toggle.fly",
+			--"@nemcommon.debug('Kick Land')"
+		}
+	}, 
+
 	-- Legacy of the Emperor 115921 lvl 22
-	{ "Legacy of the Emperor", "@nemcommon.fiveMainstats"},
+	{ "Legacy of the Emperor", 
+		{	"!player.buff(115921)",
+			"!player.buff(117666)",
+			"!modifier.last",
+			--"@nemcommon.fiveMainstats"
+		}
+	},
 	-- Legacy of the White Tiger 116781 lvl 81
-	{ "Legacy of the White Tiger","@nemcommon.fiveCrit"},
-  }
-})
+	{ "Legacy of the White Tiger",
+		{	"!player.buff(116781)",
+			"!modifier.last",
+			--"@nemcommon.fiveCrit"
+		}
+	},
+	
+	-- Kick em in the face
+	-- Flying Serpernt kick
+	{"101545",
+		{	"target.spell(117952).range", 	-- Crackling Jade Lightning for range check
+			"!target.spell(116705).range",	-- Spear Hand Strike for Min Range
+			"target.exists",
+			"target.enemy",
+			"!modifier.last(101545)",
+			"toggle.fly",
+			--"@nemcommon.debug('Kick Launch')"
+		},
+	},			
+  
+	-- Auto Target Enemy 
+	{ "!/targetenemy","!target.alive",}, 
+	{ "!/targetenemy","!target.enemy"}, 
+	{ "!/targetenemy","!target.exists"}, 
+
+  
+},function()
+ProbablyEngine.toggle.create('fly', 'Interface\\Icons\\ability_monk_flyingdragonkick', 'FSK', 'Automatically FSK when in melee range')end
+
+)

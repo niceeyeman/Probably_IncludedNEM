@@ -23,3 +23,4 @@ FrostPvP.lua
 MavminsEnhan.lua
 ProtPaladin.lua
 ProtPaladinPvp.lua
+WWmonk.lua

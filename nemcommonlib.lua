@@ -34,6 +34,13 @@ function nemcommon.flySerpent(unit)
 	end
 	return false
 end
+function nemcommon.flySerpentT(unit)
+local _, _, flying1 = GetSpellInfo(101545)
+local _, _, flying2 = GetSpellInfo(115057)
+    return flying1 == flying2
+  end
+
+
 --[[ Origanal
 function nemcommon.flySerpent(thresholdfly)
 	local temp_buffsfly = {373,332,305}
@@ -206,6 +213,11 @@ function nemcommon.dagCheck(weaptype)
 local sName, sLink, iRarity, iLevel, iMinLevel, sType, sSubType, iStackCount = GetItemInfo(GetInventoryItemID("player", GetInventorySlotInfo("MainHandSlot")))
 	local dCwt = weaptype or "Daggers"
  if sSubType == dCwt then return true else return false end
+end
+
+function nemcommon.debug(step)
+print (step)
+return true
 end
 
 
