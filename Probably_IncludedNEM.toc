@@ -18,9 +18,10 @@ elemental.lua
 elementalPvP.lua
 FireMage.lua
 FireMagePvP.lua
-Frost.lua
-FrostPvP.lua
+FrostDK.lua
+FrostDKPvP.lua
 MavminsEnhan.lua
 ProtPaladin.lua
 ProtPaladinPvp.lua
-WWmonk.lua
+RetpalaUpto84.lua
+WWmonkPvP.lua

@@ -1,5 +1,5 @@
 -- SPEC ID 266
-ProbablyEngine.rotation.register_custom(266, "NEM included solo/pvp", 
+ProbablyEngine.rotation.register_custom(266, "NEM solo-pvp", 
 {
 -- PVP Trink Insignia of the Alliance
 	-- Insignia of the Alliance

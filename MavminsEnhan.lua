@@ -3,7 +3,7 @@
 -- Created on Nov 20th 2013 6:12 pm
 -- Mavmins Enhancement with Purge added
 
-ProbablyEngine.rotation.register_custom(263, "Mavmins Enhancement [NEM]", {
+ProbablyEngine.rotation.register_custom(263, "Mavmins with Purge [NEM]", {
 
 -- Buffs
 	{ "8238", "!player.enchant.mainhand" }, --Windfury

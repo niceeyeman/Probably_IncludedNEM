@@ -5,7 +5,7 @@
 -- Source: https://probablyengine.com/forum/viewtopic.php?id=800
 
 
-ProbablyEngine.rotation.register_custom(63, "NEM Fire", 
+ProbablyEngine.rotation.register_custom(63, "NEM Group", 
 {
 -- Pause for Invis
 	{ "pause", "player.buff(66)" }, 						-- Pause Casting While Invisibile

@@ -20,7 +20,7 @@ ProbablyEngine.library.register('coreHealing', {
 	})
 
 
-ProbablyEngine.rotation.register_custom(262, "Grouped_NEM", 
+ProbablyEngine.rotation.register_custom(262, "NEM Group", 
 {
 
 --In Combat Buffs

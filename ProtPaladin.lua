@@ -1,7 +1,10 @@
 -- ProbablyEngine Rotation Packager
 -- Custom Protection Paladin Rotation
 -- Created on Dec 23rd 2013 10:07 am
-ProbablyEngine.rotation.register_custom(66, "NEM Included", 
+
+-- **** UNTESTED ***
+
+ProbablyEngine.rotation.register_custom(66, "NEM Group-untested", 
 {
 
     -- Seals

@@ -1,7 +1,7 @@
 -- ProbablyEngine Rotation Packager
 -- Custom Protection Paladin Rotation
 -- Created on Dec 23rd 2013 10:07 am
-ProbablyEngine.rotation.register_custom(66, "NEM Included SoloPvP", 
+ProbablyEngine.rotation.register_custom(66, "NEM Solo-PvP", 
 {
 -- PVP Trink Insignia of the Alliance
 	-- Insignia of the Alliance

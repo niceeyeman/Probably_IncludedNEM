@@ -20,7 +20,7 @@ ProbablyEngine.library.register('coreHealing', {
 	})
 
 
-ProbablyEngine.rotation.register_custom(262, "SoloPvP_NEM", 
+ProbablyEngine.rotation.register_custom(262, "NEM Solo-PvP", 
 {
 
 --In Combat Buffs

@@ -5,7 +5,7 @@
 -- Some code "borrowed" from Charus https://probablyengine.com/forum/viewtopic.php?id=841
 --  and Chunky https://probablyengine.com/forum/viewtopic.php?id=718
 
-ProbablyEngine.rotation.register_custom(267, "Included[NEM] pvp", 
+ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP", 
 {
 -- PVP Trink Insignia of the Alliance
 	-- Insignia of the Alliance

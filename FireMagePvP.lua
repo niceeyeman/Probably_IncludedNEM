@@ -5,7 +5,7 @@
 -- Source: https://probablyengine.com/forum/viewtopic.php?id=800
 
 
-ProbablyEngine.rotation.register_custom(63, "NEM Fire PvP", 
+ProbablyEngine.rotation.register_custom(63, "NEM Solo-PvP", 
 {
 	-- Auto Target Enemy /targetenemyplayer
 	

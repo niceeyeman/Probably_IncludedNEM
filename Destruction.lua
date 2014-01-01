@@ -6,7 +6,7 @@
 --  and Chunky https://probablyengine.com/forum/viewtopic.php?id=718
 -- NO auto target, autofear, or auto RoF
 
-ProbablyEngine.rotation.register_custom(267, "Included[NEM]", 
+ProbablyEngine.rotation.register_custom(267, "NEM Group", 
 {
 -- Buff
 	{-- Dark Intent Charus

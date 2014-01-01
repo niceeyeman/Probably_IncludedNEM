@@ -2,7 +2,7 @@
 -- Custom Frost Death Knight Rotation
 -- Created on Dec 10th 2013 10:05 pm
 -- SPEC ID 251
-ProbablyEngine.rotation.register_custom(251, "Included_NEM", {
+ProbablyEngine.rotation.register_custom(251, "NEM Group", {
 
     -- Survival
     -- Death Pact Macro

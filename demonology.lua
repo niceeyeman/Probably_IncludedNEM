@@ -1,5 +1,5 @@
 -- SPEC ID 266
-ProbablyEngine.rotation.register_custom(266, "NEM included", 
+ProbablyEngine.rotation.register_custom(266, "NEM Group", 
 {
 
   { "Dark Intent", "!player.buff(Dark Intent)" },

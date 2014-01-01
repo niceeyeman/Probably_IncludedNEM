@@ -2,7 +2,7 @@
 -- Custom Frost Death Knight Rotation
 -- Created on Dec 10th 2013 10:05 pm
 -- SPEC ID 251
-ProbablyEngine.rotation.register_custom(251, "Included_NEM soloPvP", {
+ProbablyEngine.rotation.register_custom(251, "NEM solo-PvP", {
 -- PVP Trink Insignia of the Alliance
 	-- Insignia of the Alliance
 	{"#29593", "player.state.fear"},					
