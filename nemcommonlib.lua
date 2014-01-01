@@ -23,17 +23,7 @@ function nemcommon.targNotfocus()
 		return false end
 	return true
 end
--- Checks player for Leader of the Pack,Arcane/dalaran Brilliance,Lot White Tiger, Hunter Pet Buffs
--- True if duration > 3
-function nemcommon.flySerpent(unit)
-	local temp_buffsfly = {373,332,305}
-	for i=1,#temp_buffsfly do
-		if UnitAura("player",GetSpellInfo(temp_buffsfly[i])) then
-			return true end
-		
-	end
-	return false
-end
+
 function nemcommon.flySerpentT(unit)
 local _, _, flying1 = GetSpellInfo(101545)
 local _, _, flying2 = GetSpellInfo(115057)
@@ -69,7 +59,7 @@ end
 -- Checks player for Mark of the Wild,Legacy of the Emperor,Blessing of Kings,Embrace of the Shale Spider
 -- True if duration > 3
 function nemcommon.fiveMainstats(thresholdfms)
-	local temp_buffsfms = {1126,115921,20217,90363}
+	local temp_buffsfms = {1126,115921,20217,90363,117666}
 	local timerfms = thresholdfms or 3
 	for i=1,#temp_buffsfms do
 		if UnitBuff("player",GetSpellInfo(temp_buffsfms[i])) then

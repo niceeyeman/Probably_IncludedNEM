@@ -13,21 +13,27 @@ ProbablyEngine.rotation.register_custom(269, "NEM",
 			--"@nemcommon.debug('Kick Land')"
 		}
 	}, 
-			
+	
+	{ 	"Touch of Death", 
+		{	"!target.isPlayer",
+			"player.buff(Death Note)" 
+		}
+	},
+	
 --Buff
 	-- Legacy of the Emperor 115921 lvl 22
 	{ "Legacy of the Emperor", 
 		{	"!player.buff(115921)",
 			"!player.buff(117666)",
 			"!modifier.last",
-			--"@nemcommon.fiveMainstats"
+			"@nemcommon.fiveMainstats()"
 		}
 	},
 	-- Legacy of the White Tiger 116781 lvl 81
 	{ "Legacy of the White Tiger",
 		{	"!player.buff(116781)",
 			"!modifier.last",
-			--"@nemcommon.fiveCrit"
+			"@nemcommon.fiveCrit()"
 		}
 	},
 
@@ -43,7 +49,7 @@ ProbablyEngine.rotation.register_custom(269, "NEM",
 			{ "Spear Hand Strike" },
 			{ "Leg Sweep" },
 			{ "Charging Ox Wave" },
-			{ "Ring of Peace", "player" },
+			{ "Ring of Peace",true,"player"},
 		},
 		{	"target.casting.time <= 2",
 			"target.interruptsAt(50)"
@@ -54,7 +60,7 @@ ProbablyEngine.rotation.register_custom(269, "NEM",
 			{ "Spear Hand Strike" },
 			{ "Leg Sweep" },
 			{ "Charging Ox Wave" },
-			{ "Ring of Peace", "player" },
+			{ "Ring of Peace",true, "player" },
 		},
 		{	"target.casting.time > 2",
 			"target.interruptsAt(20)"
@@ -145,6 +151,7 @@ ProbablyEngine.rotation.register_custom(269, "NEM",
 	{ "Energizing Brew", { "player.energy < 20", "player.spell(Fists of Fury).cooldown" }},
 	{ "Touch of Karma", "player.health < 90" },
 	{ "Grapple Weapon", "modifier.alt" },
+	{ "Grapple Weapon", "target.isPlayer" },
 
 --Rotation Single Target/multi target
 	{ "Tiger Palm", "player.buff(Tiger Power).duration < 3" },
