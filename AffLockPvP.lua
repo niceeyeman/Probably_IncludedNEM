@@ -119,6 +119,8 @@ ProbablyEngine.rotation.register_custom(265, "NEM Solo-PVP",
 	{"Demonic Circle: Summon","modifier.lshift"}, 
 	{"Demonic Gateway","modifier.lcontrol"}, 
 	{"Drain Life","player.health <= 40"},
+	-- Heal pet if glyphed Health Funnel
+	{"114189", "pet.health <= 80"}, 
 
  --Interupts
 

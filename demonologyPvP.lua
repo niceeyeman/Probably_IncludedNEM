@@ -53,6 +53,8 @@ ProbablyEngine.rotation.register_custom(266, "NEM solo-pvp",
   { "Dark Intent", "!player.buff(Dark Intent)" },
   { "Curse of the Elements", "!target.debuff(Curse of the Elements)" },
 
+	-- Heal pet if glyphed Health Funnel
+	{"114189", "pet.health <= 80"}, 
 
   -- Cooldowns
   { "Summon Doomguard", "modifier.cooldowns" },

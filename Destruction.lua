@@ -82,6 +82,9 @@ ProbablyEngine.rotation.register_custom(267, "NEM Group",
 	-- Drain Life
 	{"689","player.health < 60"},
 	
+		-- Heal pet if glyphed Health Funnel
+	{"114189", "pet.health <= 80"}, 
+	
 	-- Lifeblood on cd for heal/haste
 	{"Lifeblood","!modifier.last"},
 	

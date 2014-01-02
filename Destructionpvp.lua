@@ -192,6 +192,8 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 			"player.health < 60"
 		}
 	},
+	-- Heal pet if glyphed Health Funnel
+	{"114189", "pet.health <= 80"}, 
 
 	-- Lifeblood on cd for haste 15 sec fight
 	{"Lifeblood",
