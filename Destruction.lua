@@ -40,10 +40,18 @@ ProbablyEngine.rotation.register_custom(267, "NEM Group",
 		}
 	},					
 -- Interupt
-	-- Felhunter: Spell Lock
+	-- Felhunter: Spell Lock 2 sec or < 50%
 	{"103135",											
 		{	"target.spell(103135).range",
-			"modifier.interrupts" 
+			"target.casting.time <= 2",
+			"target.interruptAt(50)"
+		}
+	},
+	-- Felhunter: Spell Lock < 2 sec 15%
+	{"103135",											
+		{	"target.spell(103135).range",
+			"target.casting.time <= 2",
+			"target.interruptAt(50)"
 		}
 	},
 	-- Howl of Terror

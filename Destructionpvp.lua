@@ -38,6 +38,7 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 -- OTHER Racials
 	-- Blood Elf Arcane Torrent by name each class has own spellID
 	{"Arcane Torrent","target.range <= 8"}, --untested
+	
 	-- Troll Berserking on CD
 	{"26297",
 		{	"!modifier.last",
@@ -91,11 +92,7 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 		}
 	},
 	-- Blood Horror 111397
-	{"111397",
-		{	"player.health > 85",
-			"!player.buff(111397)"
-		}
-	},
+	{"111397","!player.buff(111397)"},
 	
 -- Curses  foiled again	
 	-- Curse of Elements Charus
@@ -128,14 +125,14 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	{"103135",											
 		{	"target.spell(103135).range",
 			"target.casting.time <= 2",
-			"target.interruptsAt(50)"
+			"target.interruptAt(50)"
 		}
 	},
 	-- Felhunter: Spell Lock < 2 sec 15%
 	{"103135",											
 		{	"target.spell(103135).range",
 			"target.casting.time <= 2",
-			"target.interruptsAt(50)"
+			"target.interruptAt(50)"
 		}
 	},
 	-- Howl of Terror
@@ -314,7 +311,9 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 			"!@nemcommon.tenSpellpower"					--10% spell power any
 		}
 	},	
-	
+	-- Blood Horror 111397
+	{"111397","!player.buff(111397)"},
+
 	-- Summon Healthstone if < 3
 	{ "6201",
 		{ 	"@nemcommon.Healthstone",
