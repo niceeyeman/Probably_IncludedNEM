@@ -385,12 +385,7 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 			}
 		},
 		--Conflagrate 17962
-		{ "17962",
-			{	"target.debuff(348)",
-				"player.spell(17962).charges > 1", 
-				"!player.buff(Backdraft)" 
-			}
-		},										
+		{ "17962","target.debuff(348)"},										
 		--Incinerate (filler)
 		{ "29722"},	
 		
@@ -422,6 +417,7 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 			"player.swimming"
 		}
 	},
+	
 	-- Soulstone 20707
 	{"20707",
 		{	"modifier.members == 0",
