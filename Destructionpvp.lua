@@ -87,8 +87,7 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	-- Dark Intent Charus
 	{ "109773", 										
 		{ 	"!player.buff(109773)",
-			"player.level >= 82",
-			 "!@nemcommon.tenSpellpower"					--10% spell power any
+			"!@nemcommon.tenSpellpower"					--10% spell power any
 		}
 	},
 	-- Blood Horror 111397
@@ -168,7 +167,7 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 			"target.spell(6789).range"
 		}
 	},
-	-- Lifeblood on cd for haste
+	-- Lifeblood 
 	{"Lifeblood",
 		{	"!modifier.last",
 			"player.health < 70",
@@ -312,19 +311,13 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 --OOC
 --summon pet, buffs
 	--Buffs
-	-- Dark Intent Charus
+	-- Dark Intent 109773 lvl 82
 	{ "109773",  										
 		{ 	"!player.buff(109773)",
-			"player.level >= 82",
 			"!@nemcommon.tenSpellpower"					--10% spell power any
 		}
 	},
-	{ "Dark Intent",  										
-		{ 	"!player.buff(Dark Intent)",
-			"player.spell(Dark Intent).exists",
-			"!@nemcommon.tenSpellpower"					--10% spell power any
-		}
-	},	
+
 	-- Blood Horror 111397
 	{"111397","!player.buff(111397)"},
 
@@ -338,8 +331,8 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	--  Fel Hunter
 	{"691",
 		{	"!pet.exists",
-		"!modifier.last",
-		"player.level >= 29"
+			"!modifier.last",
+			"player.level >= 29"
 		}
 	},
 	--  Succubus till Fel Hunter
@@ -373,8 +366,7 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	
 	-- Immolate
 	{ "348",
-		{	--"player.spell(348).exists",
-			"target.spell(348).range",
+		{	"target.spell(348).range",
 			"target.exists",
 			"target.enemy",
 		},"target"
