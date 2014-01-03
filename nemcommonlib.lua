@@ -94,6 +94,7 @@ function nemcommon.tenStam(thresholdtenstam)
 end
 -- Hysteria functions added a couple from chunky's list
 -- checks for short duration buffs
+-- Windsong x2, Blessing of the Celestials, Blood Fury, Inner Brilliance, Flashfreeze, Lightweave, Static Charge, Blossom, Synapse Springs, Predation, Breath of Many Minds, Mastermind, Wushoolay's Lightning, Acceleration, Jade Spirit, Virmen's Bite, Extravagant Visions, Toxic Power, Wrath of the Darkspear, Expanded Mind, Tempus Repit, Dark Soul: Instability, Skull Banner, Yu'lon's Bite, Perfect Aim 
 function nemcommon.tempBuffs(threshold)
 	local temp_buffs = {104509,104510,128985,33702,126577,126478,125487,136082,126605,126734,126476,138898,139133,138786,138703,104993,105702,148897,148906,146184,146046,137590,113858,114207,146218,138963,}
 	local timerTB = threshold or 3

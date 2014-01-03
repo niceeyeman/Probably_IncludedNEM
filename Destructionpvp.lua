@@ -237,18 +237,29 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 		},	
 	-- Single Target DPS
 		-- ShadowBurn from Chunky
-		{ 													
-			{
-				{ "!17877", "player.buff(80240).count >= 1" }, 		-- Havoc
-				{ "!17877", "@nemcommon.tempBuffs" }, 				-- BUFFS 
-				{ "!17877", "player.embers >= 35" }, 				-- Capped
-				{ "!17877", "target.deathin < 20" }, 				-- TTD < 30
-			},
-			{ "target.health < 20" }
+		{ "!17877", 
+			{	"player.buff(80240).count >= 1",		-- Havoc
+				"target.health < 20"
+			}
+		},
+		{ "!17877", 
+			{	"@nemcommon.tempBuffs", 				-- BUFFS 
+				"target.health < 20"
+			}
+		},
+		{ "!17877", 
+			{	"player.embers >= 35", 					-- Capped
+				"target.health < 20"
+			}
+		},
+		{ "!17877", 
+			{	"target.deathin < 20", 					-- TTD < 30
+				"target.health < 20"
+			}
 		},
 		
 		--Incinerate with Proc
-		{ "!29722", "player.buff(108563)" },					
+		{ "29722", "player.buff(108563)" },					
 		--Incinerate with Proc when moving
 		{ "!29722", 										
 			{	"player.moving",
@@ -262,16 +273,16 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 			}
 		},				
 		-- Chaos Bolt (Target Health >20%) Chunky
-		{													
-			{ 
-				{ "116858",  										--Don't cap
-					{	"!modifier.last", 
-						"player.embers >= 35" 
-					}
-				}, 
-			{ "!116858", "@nemcommon.tempBuffs" }, 			-- Blood of Y'Shaarj
-			},
-			{ 	"target.health > 20",  
+		{ "116858",  										--Don't cap
+			{	"!modifier.last", 
+				"player.embers >= 35",
+				"target.health > 20",  
+				"!player.moving" 						
+			}
+		}, 
+		{ "116858", 
+			{	"@nemcommon.tempBuffs", 			-- Blood of Y'Shaarj
+			 	"target.health > 20",  
 				"!player.moving" 
 			}
 		},
@@ -283,13 +294,16 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 			}
 		},										
 		--Incinerate (filler)
-		{ "29722"},											
-		--Incinerate **target moves out of range while casting fear
+		{ "29722"},	
+		
+		-- Incinerate **target moves out of range while casting fear
 		{ "!29722",
 			{	"target.spell(29722).range",
+				"player.casting(5782)",
 				"!target.spell(5782).range"
 			}
-		},											
+		}, 
+		
 		--Fel Flame when Moving
 		{ "!77799", "player.moving" },						
 		
