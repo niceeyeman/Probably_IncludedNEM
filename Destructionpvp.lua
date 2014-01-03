@@ -258,16 +258,18 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 		},
 		
 		--Incinerate with Proc
-		{ "29722", "player.buff(108563)" },					
+		{ "29722", "player.buff(108563)" },		
+		
 		--Incinerate with Proc when moving
 		{ "!29722", 										
 			{	"player.moving",
 				"player.buff(108563)" 
 			}
-		},					
+		},	
+		
 		-- Conflagrate 2 charges
 		{ "17962",
-			{	"spell.charges(17962) =2",
+			{	"spell.charges(17962) = 2",
 				"target.debuff(348)"
 			}
 		},				
