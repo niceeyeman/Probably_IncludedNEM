@@ -207,10 +207,13 @@ local sName, sLink, iRarity, iLevel, iMinLevel, sType, sSubType, iStackCount = G
 end
 
 function nemcommon.debug(step)
-print (step)
+  UIErrorsFrame:AddMessage(step, 1.0, 0.5, 0.0, 3)  
 return true
 end
 
+--[[ need to change 'True ooc' to a varible
+{"!/run UIErrorsFrame:AddMessage('True ooc', 1.0, 0.5, 0.0, 3)", "modifier.members == 0"},
+]]
 
 
 ProbablyEngine.library.register("nemcommon", nemcommon)

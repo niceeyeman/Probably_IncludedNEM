@@ -191,14 +191,14 @@ ProbablyEngine.rotation.register_custom(269, "NEM Solo-PvP",
 		{	"!player.buff(115921)",
 			"!player.buff(117666)",
 			"!modifier.last",
-			--"@nemcommon.fiveMainstats"
+			"@nemcommon.fiveMainstats"
 		}
 	},
 	-- Legacy of the White Tiger 116781 lvl 81
 	{ "Legacy of the White Tiger",
 		{	"!player.buff(116781)",
 			"!modifier.last",
-			--"@nemcommon.fiveCrit"
+			"@nemcommon.fiveCrit"
 		}
 	},
 	

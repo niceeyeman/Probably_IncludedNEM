@@ -167,13 +167,63 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 			"target.spell(6789).range"
 		}
 	},
-	-- Lifeblood 
-	{"Lifeblood",
+	-- Lifeblood 121279, 74497, 55503, 55502, 55501, 55500, 55480, 55428, 81708 
+	{"121279",
 		{	"!modifier.last",
 			"player.health < 70",
-			"!player.buff(Lifeblood)"
+			"!player.buff(121279)"
 		}
 	},
+	{"74497",
+		{	"!modifier.last",
+			"player.health < 70",
+			"!player.buff(74497)"
+		}
+	},
+	{"55503",
+		{	"!modifier.last",
+			"player.health < 70",
+			"!player.buff(55503)"
+		}
+	},
+	{"55502",
+		{	"!modifier.last",
+			"player.health < 70",
+			"!player.buff(55502)"
+		}
+	},
+	{"55501",
+		{	"!modifier.last",
+			"player.health < 70",
+			"!player.buff(55501)"
+		}
+	},
+	{"55500",
+		{	"!modifier.last",
+			"player.health < 70",
+			"!player.buff(55500)"
+		}
+	},
+	{"55480",
+		{	"!modifier.last",
+			"player.health < 70",
+			"!player.buff(55480)"
+		}
+	},
+	{"55428",
+		{	"!modifier.last",
+			"player.health < 70",
+			"!player.buff(55428)"
+		}
+	},
+	{"81708",
+		{	"!modifier.last",
+			"player.health < 70",
+			"!player.buff(81708)"
+		}
+	},
+	-- Lifeblood end
+	
 	-- Ember Tap 2 or more Embers	
 	{"114635",											
 		{	"player.embers >= 10",
@@ -192,12 +242,61 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	{"114189", "pet.health <= 80"}, 
 
 	-- Lifeblood on cd for haste 15 sec fight
-	{"Lifeblood",
+	{"121279",
 		{	"!modifier.last",
 			"target.ttd > 14",
-			"!player.buff(Lifeblood)"
+			"!player.buff(121279)"
 		}
 	},
+	{"74497",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(74497)"
+		}
+	},
+	{"55503",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(55503)"
+		}
+	},
+	{"55502",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(55502)"
+		}
+	},
+	{"55501",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(55501)"
+		}
+	},
+	{"55500",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(55500)"
+		}
+	},
+	{"55480",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(55480)"
+		}
+	},
+	{"55428",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(55428)"
+		}
+	},
+	{"81708",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(81708)"
+		}
+	},
+	-- Lifeblood end
 	
 	-- Fear auto fire
 	{"5782",											
@@ -260,12 +359,12 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 		--Incinerate with Proc
 		{ "29722", "player.buff(108563)" },		
 		
-		--Incinerate with Proc when moving
+		--[[ Incinerate with Proc when moving
 		{ "!29722", 										
 			{	"player.moving",
 				"player.buff(108563)" 
 			}
-		},	
+		}, ]]	
 		
 		-- Conflagrate 2 charges
 		{ "17962",
@@ -319,7 +418,13 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 			"!@nemcommon.tenSpellpower"					--10% spell power any
 		}
 	},
-
+	-- Unending Breath if swimming
+	{"5697",
+		{	"!player.buff(5697)",
+			"player.swimming"
+		}
+	},
+	
 	-- Blood Horror 111397
 	{"111397","!player.buff(111397)"},
 
