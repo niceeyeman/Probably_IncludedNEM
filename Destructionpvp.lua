@@ -350,7 +350,7 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	{"688",
 		{	"!pet.exists",
 			"!modifier.last",
-			"player.level <=19"
+			"player.level <= 19"
 		}
 	},
 
