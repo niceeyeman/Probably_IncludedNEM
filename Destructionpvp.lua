@@ -307,8 +307,6 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 			"toggle.fears",
 		}
 	},
-	-- pet attack if not attacking
-	{ "!/petattack","@nemcommon.petNotfighting"},
 
 	-- Havoc on Focus
 	{ "80240", 										
@@ -386,10 +384,10 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 				"!player.moving" 
 			}
 		},
-		--Conflagrate
+		--Conflagrate 17962
 		{ "17962",
 			{	"target.debuff(348)",
-				"player.spell(Conflagrate).charges > 1", 
+				"player.spell(17962).charges > 1", 
 				"!player.buff(Backdraft)" 
 			}
 		},										
@@ -422,6 +420,12 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	{"5697",
 		{	"!player.buff(5697)",
 			"player.swimming"
+		}
+	},
+	-- Soulstone 20707
+	{"20707",
+		{	"modifier.members == 0",
+			"!player.buff(20707)"
 		}
 	},
 	
