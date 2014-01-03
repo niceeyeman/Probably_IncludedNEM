@@ -98,10 +98,10 @@ ProbablyEngine.rotation.register_custom(267, "NEM Group",
 	
 	-- Fear Right Shift
 	{"5782",											
-		{	"target.range <= 7",
-			"!target.debuff(fear)",
+		{	"!target.debuff(fear)",
 			"!modifier.last",
 			"modifier.rshift",
+			"target.spell(5782).range",
 			"!target.immune.fear"
 		}
 	},
@@ -128,50 +128,77 @@ ProbablyEngine.rotation.register_custom(267, "NEM Group",
 	
 	-- Single Target DPS
 	-- ShadowBurn from Chunky
-	{	
-		{ 												
-			{ "!17877", "player.buff(80240).count >= 1" }, 	-- Havoc
-			{ "!17877", "@nemcommon.tempBuffs" }, 			-- BUFFS 
-			{ "!17877", "player.embers >= 35" }, 			-- Capped
-			{ "!17877", "target.deathin < 20" }, 			-- TTD < 30
+		{ "!17877", 
+			{	"player.buff(80240).count >= 1",		-- Havoc
+				"target.health < 20"
+			}
 		},
-		{ "target.health < 20" }
-	},
+		{ "!17877", 
+			{	"@nemcommon.tempBuffs", 				-- BUFFS 
+				"target.health < 20"
+			}
+		},
+		{ "!17877", 
+			{	"player.embers >= 35", 					-- Capped
+				"target.health < 20"
+			}
+		},
+		{ "!17877", 
+			{	"target.deathin < 20", 					-- TTD < 30
+				"target.health < 20"
+			}
+		},
 		
-	--Incinerate with Proc
-	{ "29722", "player.buff(108563)" },					
-	--Incinerate with Proc when moving
-	{ "!29722", 										
-		{	"player.moving",
-			"player.buff(108563)" 
-		}
-	},					
-	-- Conflagrate 2 charges
+		--Incinerate with Proc
+		{ "29722", "player.buff(108563)" },		
+		
+		--Incinerate with Proc when moving
+		{ "!29722", 										
+			{	"player.moving",
+				"player.buff(108563)" 
+			}
+		},	
+		
+		-- Conflagrate 2 charges
 		{ "17962",
-			{	"spell.charges(17962) =2",
+			{	"spell.charges(17962) = 2",
 				"target.debuff(348)"
 			}
 		},				
-	-- Chaos Bolt (Target Health >20%) Chunky
-	{
-		{ 												
-			{ "116858",  									--Don't cap
-				{	"!modifier.last", 
-					"player.embers >= 35" 
-				}
-			}, 
-			{ "!116858", "@nemcommon.tempBuffs" }, 			-- Blood of Y'Shaarj
+		-- Chaos Bolt (Target Health >20%) Chunky
+		{ "116858",  										--Don't cap
+			{	"!modifier.last", 
+				"player.embers >= 35",
+				"target.health > 20",  
+				"!player.moving" 						
+			}
+		}, 
+		{ "116858", 
+			{	"@nemcommon.tempBuffs", 			-- Blood of Y'Shaarj
+			 	"target.health > 20",  
+				"!player.moving" 
+			}
 		},
-		{ 	"target.health > 20",  
-			"!player.moving" 
-		}
-	},
-	--Conflagrate
-	{ "17962","target.debuff(348)" },										
-	--Incinerate (filler)
-	{ "29722"},											
-	--Fel Flame
-	{ "!77799", "player.moving" },						
+		--Conflagrate
+		{ "17962",
+			{	"target.debuff(348)",
+				"player.spell(Conflagrate).charges > 1", 
+				"!player.buff(Backdraft)" 
+			}
+		},										
+		--Incinerate (filler)
+		{ "29722"},	
+		
+		-- Incinerate **target moves out of range while casting fear
+		{ "!29722",
+			{	"target.spell(29722).range",
+				"player.casting(5782)",
+				"!target.spell(5782).range"
+			}
+		}, 
+		
+		--Fel Flame when Moving
+		{ "!77799", "player.moving" },						
 
 },
 {
