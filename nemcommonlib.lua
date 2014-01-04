@@ -210,10 +210,65 @@ function nemcommon.debug(step)
   UIErrorsFrame:AddMessage(step, 1.0, 0.5, 0.0, 3)  
 return true
 end
+--bbLib origaly
+function nemcommon.PlayerHasLust()
+	if UnitBuff("player", "Rapid Fire")
+	or UnitBuff("player", "Bloodlust")
+	or UnitBuff("player", "Heroism")
+	or UnitBuff("player", "Time Warp")
+	or UnitBuff("player", "Ancient Hysteria")
+	then 
+		return true 
+	else 
+		return false
+	end
+end
+--bbLib origaly
+function nemcommo.usePot(target)
+   -- Check for hero/bloodlust/etc
+   if not (UnitBuff("player", 2825) or
+         UnitBuff("player", 32182) or
+         UnitBuff("player", 80353) or
+         UnitBuff("player", 90355)) then
+      return false
+   end
+   -- 76089 = Virmen's Bite
+   if GetItemCount(76089) < 1 then return false end
+   if GetItemCooldown(76089) ~= 0 then return false end
+   if not ProbablyEngine.condition["modifier.cooldowns"] then return false end
+   --if UnitLevel(target) ~= -1 then return false end
+   -- TODO: Why do we care if the target has longer than 30 secs to live?
+   --if bbLib.t2d(target) > 30 then return false end
+   return true
+end
 
---[[ need to change 'True ooc' to a varible
-{"!/run UIErrorsFrame:AddMessage('True ooc', 1.0, 0.5, 0.0, 3)", "modifier.members == 0"},
-]]
+--bbLib origaly
+function nemcommo.PlayerHasLust() 
+	if UnitBuff("player", "Rapid Fire")
+	or UnitBuff("player", "Bloodlust")
+	or UnitBuff("player", "Heroism")
+	or UnitBuff("player", "Time Warp")
+	or UnitBuff("player", "Ancient Hysteria")
+	then 
+		return true 
+	else 
+		return false
+	end
+end
+
+--bbLib origaly
+function nemcommon.BGFlag()
+	if GetBattlefieldStatus(1)=='active' 
+	  or GetBattlefieldStatus(2)=='active' then
+		InteractUnit('Horde flag')
+		InteractUnit('Alliance flag')
+	end
+	return false
+end
+function nemcommon.Chase()
+		InteractUnit("target")
+	return true
+end
 
 
 ProbablyEngine.library.register("nemcommon", nemcommon)

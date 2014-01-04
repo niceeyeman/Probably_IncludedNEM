@@ -92,6 +92,12 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	},
 	-- Blood Horror 111397
 	{"111397","!player.buff(111397)"},
+	-- Twilight Ward
+	{"6229", 
+		{	"target.player",
+			"target.enemy"
+		}
+	},
 	
 -- Curses  foiled again	
 	-- Curse of Elements Charus
