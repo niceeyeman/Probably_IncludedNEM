@@ -28,6 +28,7 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 -- PVP Dwarf Racial
 	-- Stoneform cures Poison, Disease and Bleed
 	{"20594","player.dispellable(20594)"}, -- untested
+	{"20594", "player.health <= 65" },
 	
 -- PVP Undead Racial
 	-- Will of the Forsaken
