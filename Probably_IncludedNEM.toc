@@ -9,6 +9,7 @@ nemcommonlib.lua
 ## Rotations
 AffLock.lua
 AffLockPvP.lua
+balanced.lua
 demonology.lua
 demonologyPvP.lua
 Destruction.lua

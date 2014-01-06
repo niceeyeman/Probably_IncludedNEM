@@ -39,6 +39,12 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 -- OTHER Racials
 	-- Blood Elf Arcane Torrent by name each class has own spellID
 	{"Arcane Torrent","target.range <= 8"}, --untested
+	{"28730","target.range <= 8"}, --Default untested
+	{"50613","target.range <= 8"}, --DK untested
+	{"80483","target.range <= 8"}, --Hunter untested
+	{"129597","target.range <= 8"}, --Monk untested
+	{"25046","target.range <= 8"}, --Rogue untested
+	{"69179","target.range <= 8"}, --Warrior untested
 	
 	-- Troll Berserking on CD
 	{"26297",
@@ -48,13 +54,47 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 		}
 	}, 
 	-- Orc Blood Fury onCD by name multiple spellIDs
+	{"20572",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(20572)"
+		}
+	},
+	{"33697",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(33697)"
+		}
+	},
+	{"33702",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(33702)"
+		}
+	},
 	{"Blood Fury",
 		{	"!modifier.last",
 			"target.ttd > 14",
 			"!player.buff(Blood Fury)"
 		}
 	},
+	-- Blood Fury END
 	-- Draenei Gift of the Naaru **included for copy/paste**
+	{"59545", --DK
+		{	"!modifier.last"
+			,"player.health <= 80"
+		}
+	},
+	{"59543", --Hunter
+		{	"!modifier.last"
+			,"player.health <= 80"
+		}
+	},
+	{"59548", --Mage
+		{	"!modifier.last"
+			,"player.health <= 80"
+		}
+	},
 	{"Gift of the Naaru",
 		{	"!modifier.last"
 			,"player.health <= 80"
@@ -80,9 +120,9 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	{"!/cleartarget","!target.spell(29722).range"},
 	
 	-- Auto Target Enemy 
-	{ "!/targetenemy","!target.alive"}, 
-	{ "!/targetenemy","!target.enemy"}, 
-	{ "!/targetenemy","!target.exists"}, 
+	{ "!/targetenemy",{"toggle.solo","!target.alive"}}, 
+	{ "!/targetenemy",{"toggle.solo","!target.enemy"}}, 
+	{ "!/targetenemy",{"toggle.solo","!target.exists"}}, 
 	
 -- Buff
 	-- Dark Intent Charus
@@ -96,6 +136,7 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	-- Twilight Ward
 	{"6229", 
 		{	"target.player",
+			"toggle.solo",
 			"target.enemy"
 		}
 	},
@@ -171,7 +212,8 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	-- Mortal Coil
 	{"6789",											
 		{	"player.health < 88",
-			"target.spell(6789).range"
+			"target.spell(6789).range",
+			"toggle.solo",
 		}
 	},
 	-- Lifeblood 121279, 74497, 55503, 55502, 55501, 55500, 55480, 55428, 81708 
@@ -425,7 +467,7 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 		}
 	},
 	
-	-- Soulstone 20707
+	-- Soulstone 20707 
 	{"20707",
 		{	"modifier.members == 0",
 			"!player.buff(20707)"
@@ -483,13 +525,16 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 		{	"target.spell(348).range",
 			"target.exists",
 			"target.enemy",
+			"toggle.solo",
 		},"target"
 	},			
   
 	-- Auto Target Enemy 
-	{ "!/targetenemy","!target.alive",}, 
-	{ "!/targetenemy","!target.enemy"}, 
-	{ "!/targetenemy","!target.exists"}, 
+	{ "!/targetenemy",{"toggle.solo","!target.alive",}}, 
+	{ "!/targetenemy",{"toggle.solo","!target.enemy"}}, 
+	{ "!/targetenemy",{"toggle.solo","!target.exists"}}, 
 
 },function()
-ProbablyEngine.toggle.create('fears', 'Interface\\Icons\\spell_shadow_possession', 'Fear4Interupts', 'Automatically use fear powers to stop casters')end)
+ProbablyEngine.toggle.create('fears', 'Interface\\Icons\\spell_shadow_possession', 'Fear4Interupts', 'Automatically use fear powers to stop casters')
+ProbablyEngine.toggle.create('solo', 'Interface\\Icons\\spell_shadow_charm', 'playing Solo', 'or PvPing')
+end)

@@ -224,7 +224,7 @@ function nemcommon.PlayerHasLust()
 	end
 end
 --bbLib origaly
-function nemcommo.usePot(target)
+function nemcommon.usePot(target)
    -- Check for hero/bloodlust/etc
    if not (UnitBuff("player", 2825) or
          UnitBuff("player", 32182) or
@@ -243,7 +243,7 @@ function nemcommo.usePot(target)
 end
 
 --bbLib origaly
-function nemcommo.PlayerHasLust() 
+function nemcommon.PlayerHasLust() 
 	if UnitBuff("player", "Rapid Fire")
 	or UnitBuff("player", "Bloodlust")
 	or UnitBuff("player", "Heroism")
