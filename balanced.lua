@@ -289,7 +289,7 @@ ProbablyEngine.rotation.register_custom(102, "NEM Group", {
 { "!/focus [target=mouseover]", "modifier.lcontrol" },
 -- Cenarion Ward
 { "102351",
-	{	"!player.buff(102351)"
+	{	"!player.buff(102351)",
 		"target.exists",
 		"target.enemy"
 	}
