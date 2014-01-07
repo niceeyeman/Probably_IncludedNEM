@@ -222,7 +222,7 @@ function nemcommon.PlayerHasLust()
 		return false
 	end
 end
---bbLib origaly
+--bbLib originally
 function nemcommon.usePot(target)
    -- Check for hero/bloodlust/etc
    if not (UnitBuff("player", 2825) or
