@@ -1,6 +1,5 @@
 -- Common Function NEM
 -- Created on Dec 21st 2013 1:30 pm
--- github https://github.com/niceeyeman/Probably_nemcommonlib
 
 local nemcommon = { }
 --[[ ToC
