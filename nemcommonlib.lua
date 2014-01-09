@@ -30,20 +30,18 @@ local _, _, flying2 = GetSpellInfo(115057)
   end
 
 
---[[ Origanal
-function nemcommon.flySerpent(thresholdfly)
-	local temp_buffsfly = {373,332,305}
-	local timerfly = thresholdfly or 3
-	for i=1,#temp_buffsfly do
-		if UnitAura("player",GetSpellInfo(temp_buffsfly[i])) then
-			if select(7,UnitAura("player",GetSpellInfo(temp_buffsfly[i]))) - GetTime() <= timerfly then return true end
-		end
-	end
-	return false
+-- debuffnem would be Spellid of debuff to check against target
+-- so for Fear it would be {"5782","@nemcommon.canDebuff(5782)"}
+-- field 12 is canApplyAura which should return 1 if you can cast on the target
+--[[
+function nemcommon.canDebuff(debuffnem) 
+			if select(12,UnitDebuff("target",GetSpellInfo(debuffnem))) == 1 then return true end
+	 return false
 end
 ]]
+
 -- Checks player for Leader of the Pack,Arcane/dalaran Brilliance,Lot White Tiger, Hunter Pet Buffs
--- True if duration > 3
+-- True if duration < 3
 function nemcommon.fiveCrit(thresholdfc)
 	local temp_buffsfc = {17007,1459,61316,116781,24604,90309,126373,126309}
 	local timerfc = thresholdfc or 3
@@ -56,7 +54,7 @@ function nemcommon.fiveCrit(thresholdfc)
 end
 
 -- Checks player for Mark of the Wild,Legacy of the Emperor,Blessing of Kings,Embrace of the Shale Spider
--- True if duration > 3
+-- True if duration < 3
 function nemcommon.fiveMainstats(thresholdfms)
 	local temp_buffsfms = {1126,115921,20217,90363,117666}
 	local timerfms = thresholdfms or 3
@@ -68,7 +66,7 @@ function nemcommon.fiveMainstats(thresholdfms)
 	return false
 end
 -- Checks player for Arcane/Dalaran Brilliance,Burning Wrath, Still Water
--- True if duration > 3
+-- True if duration < 3
 function nemcommon.tenSpellpower(thresholdtsp)
 	local temp_buffstsp = {1459,61316,77747,109773,126309}
 	local timertsp = thresholdtsp or 3
@@ -80,7 +78,7 @@ function nemcommon.tenSpellpower(thresholdtsp)
 	return false
 end
 -- Checks player for PW: Fortitude,Dark Intent,Commanding Shout, Qiraji Fortitude 
--- True if any duration > 3
+-- True if any duration < 3
 function nemcommon.tenStam(thresholdtenstam)
 	local temp_buffstenstam = {21562,109773,469,90364}
 	local timertenstam = thresholdtenstam or 3
