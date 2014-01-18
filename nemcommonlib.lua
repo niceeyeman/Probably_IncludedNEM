@@ -41,63 +41,64 @@ end
 ]]
 
 -- Checks player for Leader of the Pack,Arcane/dalaran Brilliance,Lot White Tiger, Hunter Pet Buffs
--- True if duration < 3
+-- false if any duration > 3, True if needs refreshed/missing
 function nemcommon.fiveCrit(thresholdfc)
 	local temp_buffsfc = {17007,1459,61316,116781,24604,90309,126373,126309}
 	local timerfc = thresholdfc or 3
 	for i=1,#temp_buffsfc do
 		if UnitBuff("player",GetSpellInfo(temp_buffsfc[i])) then
-			if select(7,UnitBuff("player",GetSpellInfo(temp_buffsfc[i]))) - GetTime() <= timerfc then return true end
+			if select(7,UnitBuff("player",GetSpellInfo(temp_buffsfc[i]))) - GetTime() >= timerfc then return false end
 		end
 	end
-	return false
+	return true
 end
 
 -- Checks player for Mark of the Wild,Legacy of the Emperor,Blessing of Kings,Embrace of the Shale Spider
--- True if duration < 3
+-- false if any duration > 3, True if needs refreshed/missing
 function nemcommon.fiveMainstats(thresholdfms)
 	local temp_buffsfms = {1126,115921,20217,90363,117666}
 	local timerfms = thresholdfms or 3
 	for i=1,#temp_buffsfms do
 		if UnitBuff("player",GetSpellInfo(temp_buffsfms[i])) then
-			if select(7,UnitBuff("player",GetSpellInfo(temp_buffsfms[i]))) - GetTime() <= timerfms then return true end
+			if select(7,UnitBuff("player",GetSpellInfo(temp_buffsfms[i]))) - GetTime() >= timerfms then return false end
 		end
 	end
-	return false
+	return true
 end
 -- Checks player for Arcane/Dalaran Brilliance,Burning Wrath, Still Water
--- True if duration < 3
+-- false if any duration > 3, True if needs refreshed/missing
 function nemcommon.tenSpellpower(thresholdtsp)
 	local temp_buffstsp = {1459,61316,77747,109773,126309}
 	local timertsp = thresholdtsp or 3
 	for i=1,#temp_buffstsp do
 		if UnitBuff("player",GetSpellInfo(temp_buffstsp[i])) then
-			if select(7,UnitBuff("player",GetSpellInfo(temp_buffstsp[i]))) - GetTime() <= timertsp then return true end
+			if select(7,UnitBuff("player",GetSpellInfo(temp_buffstsp[i]))) - GetTime() >= timertsp then return false end
 		end
 	end
-	return false
+	return true
 end
 -- Checks player for PW: Fortitude,Dark Intent,Commanding Shout, Qiraji Fortitude 
--- True if any duration < 3
+-- false if any duration > 3, True if needs refreshed/missing
 function nemcommon.tenStam(thresholdtenstam)
 	local temp_buffstenstam = {21562,109773,469,90364}
-	local timertenstam = thresholdtenstam or 3
+	local timertenstam = 3
 	for i=1,#temp_buffstenstam do
 		if UnitBuff("player",GetSpellInfo(temp_buffstenstam[i])) then
-			if select(7,UnitBuff("player",GetSpellInfo(temp_buffstenstam[i]))) - GetTime() <= timertenstam then return true end
+			if select(7,UnitBuff("player",GetSpellInfo(temp_buffstenstam[i]))) - GetTime() >= 3 then return false end
 		end
 	end
-	return false
+	return true
 end
 -- Hysteria functions added a couple from chunky's list
 -- checks for short duration buffs
 -- Windsong x2, Blessing of the Celestials, Blood Fury, Inner Brilliance, Flashfreeze, Lightweave, Static Charge, Blossom, Synapse Springs, Predation, Breath of Many Minds, Mastermind, Wushoolay's Lightning, Acceleration, Jade Spirit, Virmen's Bite, Extravagant Visions, Toxic Power, Wrath of the Darkspear, Expanded Mind, Tempus Repit, Dark Soul: Instability, Skull Banner, Yu'lon's Bite, Perfect Aim 
+-- false if any duration > 3, True if needs refreshed/missing
 function nemcommon.tempBuffs(threshold)
 	local temp_buffs = {104509,104510,128985,33702,126577,126478,125487,136082,126605,126734,126476,138898,139133,138786,138703,104993,105702,148897,148906,146184,146046,137590,113858,114207,146218,138963,}
 	local timerTB = threshold or 3
 	for i=1,#temp_buffs do
 		if UnitBuff("player",GetSpellInfo(temp_buffs[i])) then
-			if select(7,UnitBuff("player",GetSpellInfo(temp_buffs[i]))) - GetTime() <= timerTB then return true end
+			if select(7,UnitBuff("player",GetSpellInfo(temp_buffs[i]))) - GetTime() >= timerTB then return true end
 		end
 	end
 	return false
@@ -106,15 +107,16 @@ end
 -- Debuff checks
 
 --Checks target for Magic Vulnerabilty
+-- false if any duration > 3, True if needs refreshed/missing
 function nemcommon.fiveMagicdam(threshold)
 	local temp_fmd = {1490,34889,24844,93068}
 	local timerfmd = threshold or 3
 	for i=1,#temp_fmd do
 		if UnitDebuff("target",GetSpellInfo(temp_fmd[i])) then
-			if select(7,UnitDebuff("target",GetSpellInfo(temp_fmd[i]))) - GetTime() <= timerfmd then return true end
+			if select(7,UnitDebuff("target",GetSpellInfo(temp_fmd[i]))) - GetTime() >= timerfmd then return false end
 		end
 	end
-	return false
+	return true
 end
 
 -- **** Mechanics checks **** usually fight specific

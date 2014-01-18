@@ -7,6 +7,7 @@
 
 ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP", 
 {
+-- *** NEM Standards ***		
 -- PVP Trink Insignia of the Alliance
 	-- Insignia of the Alliance
 	{"#29593", "player.state.fear"},					
@@ -106,8 +107,12 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	-- {"69041"},
 	-- Goblin Rocket Jump **included for copy/paste**
 	-- {"69070"},
-	-- Night Elf Shadowmeld **included for copy/paste**
-	-- {"58984"},
+	-- Night Elf Shadowmeld threat > 95% and not solo
+	{"58984",
+		{	"player.threat >= 95",
+			"!modifier.members == 0",
+		}
+	},
 	-- Tauren War Stomp **included for copy/paste**
 	{"20549",
 		{	"target.range <= 8",
@@ -117,20 +122,16 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 -- Racials end	
 
 	-- clear target if range > 40
-	{"!/cleartarget","!target.spell(29722).range"},
+	--{"/cleartarget","!target.spell(29722).range"},
 	
 	-- Auto Target Enemy 
-	{ "!/targetenemy",{"toggle.solo","!target.alive"}}, 
-	{ "!/targetenemy",{"toggle.solo","!target.enemy"}}, 
-	{ "!/targetenemy",{"toggle.solo","!target.exists"}}, 
+	{ "/targetenemy",{"toggle.solo","!target.alive"}}, 
+	{ "/targetenemy",{"toggle.solo","!target.enemy"}}, 
+	{ "/targetenemy",{"toggle.solo","!target.exists"}}, 
 	
 -- Buff
 	-- Dark Intent Charus
-	{ "109773", 										
-		{ 	"!player.buff(109773)",
-			"!@nemcommon.tenSpellpower"					--10% spell power any
-		}
-	},
+	{ "109773","@nemcommon.tenSpellpower"},					--10% spell power any
 	-- Blood Horror 111397
 	{"111397","!player.buff(111397)"},
 	-- Twilight Ward
@@ -145,8 +146,7 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	-- Curse of Elements Charus
 	{ "1490",  										
 		{	"!modifier.last(1490)",							 	--Antispam
-			"!target.debuff(1490)",						 		--CoE from anyone
-			"!@nemcommon.fiveMagicdam"					 	--5% magic dam
+			"@nemcommon.fiveMagicdam"					 		--5% magic dam
 		}
 	},
 	-- Curse of Enfeeblement
@@ -175,11 +175,11 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 			"target.interruptAt(50)"
 		}
 	},
-	-- Felhunter: Spell Lock < 2 sec 15%
+	-- Felhunter: Spell Lock > 2 sec 15%
 	{"103135",											
 		{	"target.spell(103135).range",
-			"target.casting.time <= 2",
-			"target.interruptAt(50)"
+			"target.casting.time > 2",
+			"target.interruptAt(15)"
 		}
 	},
 	-- Howl of Terror
@@ -212,8 +212,7 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	-- Mortal Coil
 	{"6789",											
 		{	"player.health < 88",
-			"target.spell(6789).range",
-			"toggle.solo",
+			"target.spell(6789).range"
 		}
 	},
 	-- Lifeblood 121279, 74497, 55503, 55502, 55501, 55500, 55480, 55428, 81708 
@@ -291,6 +290,11 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	{"114189", "pet.health <= 80"}, 
 
 	-- Lifeblood on cd for haste 15 sec fight
+	-- Lifeblood 121279, 74497, 55503, 55502, 55501, 55500, 55480, 55428, 81708 
+	{"/run CastSpellByID(121279)", "player.spell(121279).cooldown = 0"},
+	{"/run CastSpellByID(74497)", "player.spell(74497).cooldown = 0"},
+	{"/run CastSpellByID(121279)", "player.spell(121279).cooldown = 0"},
+	
 	{"121279",
 		{	"!modifier.last",
 			"target.ttd > 14",
@@ -455,11 +459,8 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 --summon pet, buffs
 	--Buffs
 	-- Dark Intent 109773 lvl 82
-	{ "109773",  										
-		{ 	"!player.buff(109773)",
-			"!@nemcommon.tenSpellpower"					--10% spell power any
-		}
-	},
+	{ "109773","@nemcommon.tenSpellpower"},					--10% spell power any
+	
 	-- Unending Breath if swimming
 	{"5697",
 		{	"!player.buff(5697)",
@@ -525,16 +526,14 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 		{	"target.spell(348).range",
 			"target.exists",
 			"target.enemy",
-			"toggle.solo",
 		},"target"
 	},			
   
 	-- Auto Target Enemy 
-	{ "!/targetenemy",{"toggle.solo","!target.alive",}}, 
-	{ "!/targetenemy",{"toggle.solo","!target.enemy"}}, 
-	{ "!/targetenemy",{"toggle.solo","!target.exists"}}, 
+	{ "/targetenemy","!target.alive"}, 
+	{ "/targetenemy","!target.enemy"}, 
+	{ "/targetenemy","!target.exists"}, 
 
 },function()
-ProbablyEngine.toggle.create('fears', 'Interface\\Icons\\spell_shadow_possession', 'Fear4Interupts', 'Automatically use fear powers to stop casters')
-ProbablyEngine.toggle.create('solo', 'Interface\\Icons\\spell_shadow_charm', 'playing Solo', 'or PvPing')
+ProbablyEngine.toggle.create('fears', 'Interface\\Icons\\spell_shadow_possession', 'Autofear', 'Automatically use fear')
 end)

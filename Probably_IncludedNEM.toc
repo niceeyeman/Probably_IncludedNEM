@@ -25,4 +25,6 @@ MavminsEnhan.lua
 ProtPaladin.lua
 ProtPaladinPvp.lua
 RetpalaUpto84.lua
+ShadowPriest.lua
+ShadowPriestPvP.lua
 WWmonkPvP.lua
