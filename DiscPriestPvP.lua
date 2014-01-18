@@ -191,62 +191,56 @@ ProbablyEngine.rotation.register_custom(256, "NEM Solo-PvP",
 	
 --Dispel Any Magic Buff if Button ON
     --Dispel Magic 528
-	{ "Dispel Magic", 
-		{	"target.dispellable(Dispel Magic)",
+	{ "528", 
+		{	"target.dispellable(528)",
 			"toggle.dispelmagic"
 		},"target" 
 	},
 
 --Mana
 	--Mindbender 123040 lvl 45 Talent 
-	{"Mindbender",
-		{	"player.mana <= 85",
-			"target.spell(123040).range"
-		}, 
-	},
+	{"Mindbender"},
 	--Shadowfiend 34433 lvl 42 
-	{"Shadowfiend",
-		{	"player.mana <= 85",
-			"target.range <= 40"
-		},
-    },
+	{"Shadowfiend"},
+	
 --Survival Aoe's
-	--Psychic Scream 8122
-	{"Psychic Scream","modifier.lshift"}, 
+	-- Psychic Scream 8122
+	{ "8122", 
+		{	"!target.immune.fear",
+			"target.range <= 8"
+		}
+	},
     --Psyfiend 108921   
 	{"Psyfiend","modifier.cooldown","ground"}, 
          
---Dps Rotation
-	--Shadow Word: Death 32379 lvl 46
-	{"32379","target.health <= 20"}, 
-    --Shadow Word: Pain 589 lvl 3
-	{"589", "!target.debuff(589)"}, 
-    --Cascade 121135   
-	{"Cascade"}, 
-     --Power Infusion 10060 
-	{"Power Infusion"}, 
-    --Holy Fire 14914
-	{"Holy Fire"}, 
-    --Penance 47540
-	{"Penance"}, 
-    --Smite 585  
-	{"Smite"}, 
+    { --DPS WILL NOT FIRE IF TARGET CAN'T BE HURT	
+		{ -- Rotation Nesting start
+			-- *** Standard Rotation ***
+			--Shadow Word: Death 32379 lvl 46
+			{"32379","target.health <= 20"}, 
+			--Shadow Word: Pain 589 lvl 3
+			{"589", "!target.debuff(589)"}, 
+			--Cascade 121135   
+			{"Cascade"}, 
+			--Power Infusion 10060 
+			{"Power Infusion"}, 
+			--Holy Fire 14914
+			{"Holy Fire"}, 
+			--Penance 47540
+			{"Penance"}, 
+			--Smite 585  
+			{"Smite"}, 
+		}, -- ** End of Rotation
+			{								--Don't waste mana 
+				"!target.immune.all",		--Can't touch this!
+				"!target.buff(122464.any)", -- Dematerialize 
+				"!target.buff(122470).any", -- touch of karma
+			}
+	}, -- ** End of Immune checks **    
       
 },{
 
 --Out of Combat 
-		-- Auto Target Enemy 
-	{ "!/targetenemy","!target.alive"}, 
-	{ "!/targetenemy","!target.enemy"}, 
-	{ "!/targetenemy","!target.exists"}, 
-	
-    --Shadow Word: Pain 589 lvl 3
-	{"589", 		
-		{	"target.spell(589).range",
-			"target.exists",
-			"target.enemy",
-		},"target"
-	},			
 
 
 	-- Buffs
@@ -257,11 +251,7 @@ ProbablyEngine.rotation.register_custom(256, "NEM Solo-PvP",
 		--Archangel 81700 lvl 50
 		{"Archangel", "player.buff(Evangelism).count=5"},	
 		--Power Word: Fortitude 21562 lvl 22
-		{"Power Word: Fortitude",
-			{	"@nemcommon.tenStam",
-				"!player.buff(Power Word: Fortitude).any"
-			}
-		}, 				
+		{"21562","@nemcommon.tenStam"}, 				
  
 	--Healing Rotation
 		--Power Word: Shield 17/Weakened Soul 6788 lvl 5
@@ -295,6 +285,18 @@ ProbablyEngine.rotation.register_custom(256, "NEM Solo-PvP",
 	--Mana
 		--Hymn of Hope 64901 
 		{"Hymn of Hope","player.mana <= 50"}, 
+		-- Auto Target Enemy 
+	{ "!/targetenemy","!target.alive"}, 
+	{ "!/targetenemy","!target.enemy"}, 
+	{ "!/targetenemy","!target.exists"}, 
+	
+    --Shadow Word: Pain 589 lvl 3
+	{"589", 		
+		{	"target.spell(589).range",
+			"target.exists",
+			"target.enemy",
+		},"target"
+	},			
        
 }, function()
 ProbablyEngine.toggle.create('dispelmagic', 'Interface\\Icons\\spell_nature_nullifydisease', 'Auto Dispel Magic', 'Automatically dispel any magic buffs')
