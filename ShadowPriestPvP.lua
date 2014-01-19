@@ -119,8 +119,6 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 	{"588", "!player.buff(588)"},
 	-- PW fort lvl 22
 	{"21562", "@nemcommon.tenStam"},
-	-- Shadowform lvl 24
-	{"15473", "!player.buff(15473)"},
 	-- Fear Ward 6346
 	{"6346", "!player.buff(6346)"}, 					
 	-- PW Shield when no debuff 6788
@@ -188,9 +186,15 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 			"toggle.dispelmagic"
 		},"target" 
 	},
-
 	-- Silence 15487 lvl 52
 	{ "15487","!target.immune.silence"},
+	
+--Mana
+	--Mindbender 123040 lvl 45 Talent 
+	{"Mindbender"},
+	--Shadowfiend 34433 lvl 42 
+	{"Shadowfiend"},
+
 	-- Psychic Scream 8122
 	{ "8122", 
 		{	"!target.immune.fear",
@@ -204,7 +208,9 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 		},
 	]]
 	
-	-- *** Standard Rotation ***
+    { --DPS WILL NOT FIRE IF TARGET CAN'T BE HURT	
+		{ -- Rotation Nesting start
+			-- *** Standard Rotation ***
 	-- Devouring Plague 2944 lvl 21 with 3 orbs
 	{"!2944","player.shadoworbs = 3"},
 	{"!2944", 
@@ -278,6 +284,14 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 	-- TODO check for Solace and Insanity
 	{"15407","target.debuff(15286)"},
 	{"15407"},
+		},
+		{								--Don't waste mana 
+			"!target.immune.all",		--Can't touch this!
+			"!target.buff(122464.any)", -- Dematerialize 
+			"!target.buff(122470).any", -- touch of karma
+		}
+	},     
+	
 }, 
 {	-- *** OOC ***
 	-- Inner fire lvl 9
@@ -333,6 +347,7 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 	{ "/targetenemy","!target.alive"}, 
 	{ "/targetenemy","!target.enemy"}, 
 	{ "/targetenemy","!target.exists"}, 
+	
 }, function()
 ProbablyEngine.toggle.create('dispelmagic', 'Interface\\Icons\\spell_nature_nullifydisease', 'Auto Dispel Magic', 'Automatically dispel any magic buffs')
 end
