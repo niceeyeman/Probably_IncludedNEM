@@ -700,17 +700,27 @@ ProbablyEngine.rotation.register_custom(263, "Mavmins with Purge [NEM]",
 			{	"target.spell(8050).range",
 				"target.exists",
 				"target.enemy",
-				"!target.debuff(8050)"
+				"toggle.AT",
+				"target.debuff(8050).duration < 3"
 			},"target"
 		}, 
 	-- LB		
 		{"403", 
 			{	"target.spell(403).range",
 				"target.enemy",
+				"toggle.AT",
 				"target.exists"
 			},"target"
 		}, 
+		{{
+		{ "!/targetenemy","!target.alive"}, 
+		{ "!/targetenemy","!target.enemy"}, 
+		{ "!/targetenemy","!target.exists"}, 
+		},{
+		"toggle.AT"}
+		},
 }, function()
 	ProbablyEngine.toggle.create('dispelmagic', 'Interface\\Icons\\spell_nature_nullifydisease', 'Auto Dispel Magic', 'Automatically dispel any magic buffs')
+	ProbablyEngine.toggle.create('AT', 'Interface\\Icons\\inv_sword_04', 'Auto target', 'Automatically attack on enemy target')
 	end
 )
