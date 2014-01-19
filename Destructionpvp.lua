@@ -120,14 +120,11 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 		}
 	}, --untested
 -- Racials end	
-
-	-- clear target if range > 40
-	--{"/cleartarget","!target.spell(29722).range"},
 	
 	-- Auto Target Enemy 
-	{ "/targetenemy",{"toggle.solo","!target.alive"}}, 
-	{ "/targetenemy",{"toggle.solo","!target.enemy"}}, 
-	{ "/targetenemy",{"toggle.solo","!target.exists"}}, 
+	{ "/targetenemy","!target.alive"}, 
+	{ "/targetenemy","!target.enemy"}, 
+	{ "/targetenemy","!target.exists"}, 
 	
 -- Buff
 	-- Dark Intent Charus
@@ -137,7 +134,6 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	-- Twilight Ward
 	{"6229", 
 		{	"target.player",
-			"toggle.solo",
 			"target.enemy"
 		}
 	},
@@ -440,16 +436,7 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 		--Conflagrate 17962
 		{ "17962","target.debuff(348)"},										
 		--Incinerate (filler)
-		{ "29722"},	
-		
-		-- Incinerate **target moves out of range while casting fear
-		{ "!29722",
-			{	"target.spell(29722).range",
-				"player.casting(5782)",
-				"!target.spell(5782).range"
-			}
-		}, 
-		
+		{ "29722"},			
 		--Fel Flame when Moving
 		{ "!77799", "player.moving" },						
 		

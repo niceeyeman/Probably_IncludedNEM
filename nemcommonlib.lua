@@ -57,7 +57,7 @@ end
 -- false if any duration > 3, True if needs refreshed/missing
 function nemcommon.fiveMainstats(thresholdfms)
 	local temp_buffsfms = {1126,115921,20217,90363,117666}
-	local timerfms = thresholdfms or 3
+	local timerfms = 3
 	for i=1,#temp_buffsfms do
 		if UnitBuff("player",GetSpellInfo(temp_buffsfms[i])) then
 			if select(7,UnitBuff("player",GetSpellInfo(temp_buffsfms[i]))) - GetTime() >= timerfms then return false end
@@ -95,7 +95,7 @@ end
 -- false if any duration > 3, True if needs refreshed/missing
 function nemcommon.tempBuffs(threshold)
 	local temp_buffs = {104509,104510,128985,33702,126577,126478,125487,136082,126605,126734,126476,138898,139133,138786,138703,104993,105702,148897,148906,146184,146046,137590,113858,114207,146218,138963,}
-	local timerTB = threshold or 3
+	local timerTB = 3
 	for i=1,#temp_buffs do
 		if UnitBuff("player",GetSpellInfo(temp_buffs[i])) then
 			if select(7,UnitBuff("player",GetSpellInfo(temp_buffs[i]))) - GetTime() >= timerTB then return true end
@@ -110,7 +110,7 @@ end
 -- false if any duration > 3, True if needs refreshed/missing
 function nemcommon.fiveMagicdam(threshold)
 	local temp_fmd = {1490,34889,24844,93068}
-	local timerfmd = threshold or 3
+	local timerfmd = 3
 	for i=1,#temp_fmd do
 		if UnitDebuff("target",GetSpellInfo(temp_fmd[i])) then
 			if select(7,UnitDebuff("target",GetSpellInfo(temp_fmd[i]))) - GetTime() >= timerfmd then return false end
