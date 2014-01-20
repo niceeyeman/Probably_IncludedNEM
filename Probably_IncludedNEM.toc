@@ -17,11 +17,12 @@ Destructionpvp.lua
 DiscPriestPvP.lua
 elemental.lua
 elementalPvP.lua
+Enhancement.lua
+EnhancementPvP.lua
 FireMage.lua
 FireMagePvP.lua
 FrostDK.lua
 FrostDKPvP.lua
-MavminsEnhan.lua
 ProtPaladin.lua
 ProtPaladinPvp.lua
 RetpalaUpto84.lua
