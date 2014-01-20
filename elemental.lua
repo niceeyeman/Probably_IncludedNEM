@@ -134,6 +134,9 @@ ProbablyEngine.rotation.register_custom(262, "NEM Group",
 			"!modifier.last"
 		}
 	}, --untested
+		-- Lifeblood on CD for haste	
+	{"/run CastSpellByName('Lifeblood')","player.spell(lifeblood).cooldown = 0"},
+
 -- Racials end	
 
 --In Combat Buffs

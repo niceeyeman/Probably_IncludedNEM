@@ -119,6 +119,9 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 			"!modifier.last"
 		}
 	}, --untested
+		-- Lifeblood on CD for haste	
+	{"/run CastSpellByName('Lifeblood')","player.spell(lifeblood).cooldown = 0"},
+
 -- Racials end	
 	
 	-- Auto Target Enemy 

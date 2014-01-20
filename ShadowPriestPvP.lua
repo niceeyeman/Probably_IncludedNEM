@@ -2,7 +2,7 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 {
 -- *** NEM Standards ***		
 -- PVP Trink Insignia of the Alliance
-	-- Insignia of the Alliance 29593
+	-- Insignia of the Alliance
 	{"#29593", "player.state.fear"},					
 	{"#29593", "player.state.incapacitate"},
 	{"#29593", "player.state.disorient"},
@@ -112,6 +112,9 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 			"!modifier.last"
 		}
 	}, --untested
+		-- Lifeblood on CD for haste	
+	{"/run CastSpellByName('Lifeblood')","player.spell(lifeblood).cooldown = 0"},
+
 -- Racials end	
 
 	-- Antipurging Buffing.

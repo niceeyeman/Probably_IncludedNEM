@@ -35,6 +35,7 @@ ProbablyEngine.rotation.register_custom(102, "NEM Group", {
 -- Focus Macro
 { "!/focus [target=mouseover]", "modifier.lcontrol" },
 
+-- *** NEM Standards ***		
 -- PVP Trink Insignia of the Alliance
 	-- Insignia of the Alliance
 	{"#29593", "player.state.fear"},					
@@ -66,7 +67,7 @@ ProbablyEngine.rotation.register_custom(102, "NEM Group", {
 
 -- OTHER Racials
 	-- Blood Elf Arcane Torrent by name each class has own spellID
-	-- {"Arcane Torrent","target.range <= 8"}, --untested
+	{"Arcane Torrent","target.range <= 8"}, --untested
 	{"28730","target.range <= 8"}, --Default untested
 	{"50613","target.range <= 8"}, --DK untested
 	{"80483","target.range <= 8"}, --Hunter untested
@@ -74,13 +75,13 @@ ProbablyEngine.rotation.register_custom(102, "NEM Group", {
 	{"25046","target.range <= 8"}, --Rogue untested
 	{"69179","target.range <= 8"}, --Warrior untested
 	
-	--[[ Troll Berserking on CD included in cooldowns
+	-- Troll Berserking on CD
 	{"26297",
 		{	"!modifier.last",
 			"target.ttd > 14",
 			"!player.buff(26297)"
 		}
-	}, ]]
+	}, 
 	-- Orc Blood Fury onCD by name multiple spellIDs
 	{"20572",
 		{	"!modifier.last",
@@ -134,14 +135,21 @@ ProbablyEngine.rotation.register_custom(102, "NEM Group", {
 	-- {"69041"},
 	-- Goblin Rocket Jump **included for copy/paste**
 	-- {"69070"},
-	-- Night Elf Shadowmeld **included for copy/paste**
-	-- {"58984"},
+	-- Night Elf Shadowmeld threat > 95% and not solo
+	{"58984",
+		{	"player.threat >= 95",
+			"!modifier.members == 0",
+		}
+	},
 	-- Tauren War Stomp **included for copy/paste**
 	{"20549",
 		{	"target.range <= 8",
 			"!modifier.last"
 		}
 	}, --untested
+		-- Lifeblood on CD for haste	
+	{"/run CastSpellByName('Lifeblood')","player.spell(lifeblood).cooldown = 0"},
+
 -- Racials end	
 
 -- Barkskin
@@ -161,9 +169,6 @@ ProbablyEngine.rotation.register_custom(102, "NEM Group", {
 	"toggle.rejuve",
 	"!player.buff(774)",
 	"player.health <= 90"}},
-
--- Lifeblood 
-{"Lifeblood","player.health <=95"},
 	
 -- Cenarion Ward
 { "102351","!player.buff(102351)"},

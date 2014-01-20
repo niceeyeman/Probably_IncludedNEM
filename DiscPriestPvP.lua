@@ -55,7 +55,7 @@ ProbablyEngine.rotation.register_custom(256, "NEM Solo-PvP",
 
 -- OTHER Racials
 	-- Blood Elf Arcane Torrent by name each class has own spellID
-	-- {"Arcane Torrent","target.range <= 8"}, --untested
+	{"Arcane Torrent","target.range <= 8"}, --untested
 	{"28730","target.range <= 8"}, --Default untested
 	{"50613","target.range <= 8"}, --DK untested
 	{"80483","target.range <= 8"}, --Hunter untested
@@ -97,13 +97,6 @@ ProbablyEngine.rotation.register_custom(256, "NEM Solo-PvP",
 	},
 	-- Blood Fury END
 	-- Draenei Gift of the Naaru **included for copy/paste**
-	--[[
-	{"Gift of the Naaru",
-		{	"!modifier.last"
-			,"player.health <= 80"
-		}
-	},
-	]]
 	{"59545", --DK
 		{	"!modifier.last"
 			,"player.health <= 80"
@@ -115,6 +108,11 @@ ProbablyEngine.rotation.register_custom(256, "NEM Solo-PvP",
 		}
 	},
 	{"59548", --Mage
+		{	"!modifier.last"
+			,"player.health <= 80"
+		}
+	},
+	{"Gift of the Naaru",
 		{	"!modifier.last"
 			,"player.health <= 80"
 		}
@@ -137,7 +135,10 @@ ProbablyEngine.rotation.register_custom(256, "NEM Solo-PvP",
 			"!modifier.last"
 		}
 	}, --untested
--- Racials end
+		-- Lifeblood on CD for haste	
+	{"/run CastSpellByName('Lifeblood')","player.spell(lifeblood).cooldown = 0"},
+
+-- Racials end	
 	
 --In Combat Buffs
 	--Inner Fire 588 lvl 9

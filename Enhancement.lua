@@ -240,6 +240,9 @@ ProbablyEngine.rotation.register_custom(263, "NEM Group",
 			"!modifier.last"
 		}
 	}, --untested
+		-- Lifeblood on CD for haste	
+	{"/run CastSpellByName('Lifeblood')","player.spell(lifeblood).cooldown = 0"},
+
 -- Racials end	
 
 -- Buffs
@@ -359,13 +362,19 @@ ProbablyEngine.rotation.register_custom(263, "NEM Group",
 		},
 
 	--**Rotation Begin**
-		-- Unleash Elements[73680 lvl 81] w/ Unleashed Fury [117012 lvl 90 Talent]
-		{"73680","player.spell(117012).exists"},
-		-- Elemental Blast [117014 lvl 90 Talent]
+		-- Unleash Elements[73680 lvl 81 Ins 40y 15s] w/ Unleashed Fury [117012 lvl 90 Talent]
+		{"!73680","player.spell(117012).exists"},
+		-- Elemental Blast [117014 lvl 90 Talent 2sec 40yd 12s]
 		{"117014"},
-		-- Feral Spirit
+		{ "!117014", 
+			{	"@NElib.t15_2pc",
+				"player.buff(53817).count >= 4",
+			}
+		},		
+		{ "!117014","player.buff(53817).count = 5"},
+		-- Feral Spirit [51533 lvl 60 Ins 30y 2min]
 		{"51533"},
-		-- Fire Nova [1535 lvl 44] 2+ enemies & flameshock on target
+		-- Fire Nova [1535 lvl 44 ins 100y 4sec] 2+ enemies & flameshock on target
 		{"1535",
 			{	"modifier.enemies >= 2",
 				"target.debuff(8050)"
@@ -392,9 +401,15 @@ ProbablyEngine.rotation.register_custom(263, "NEM Group",
 				"player.buff(53817).count >= 4",
 			}
 		},		
-		{ "403","player.buff(53817).count >= 5"},
-		-- Stormstrike [17364 lvl 26]
+		{ "403","player.buff(53817).count = 5"},
+		-- Stormstrike [17364 lvl 26 Ins 5y 8s]
 		{"17364"},
+		{"!17364",
+			{	"target.spell(17364).range",
+				"player.casting(403)",
+				"player.casting.delta > 1"
+			}
+		},
 		--Flame Shock[8050 lvl 12] if Unleash Flame [73683] or (!debuff & Unleash Elements[73680 lvl 81] cooldown > 5) or (!debuff & lvl <=80)
 		{"8050","player.buff(73683)"},
 		{"8050",
@@ -407,12 +422,39 @@ ProbablyEngine.rotation.register_custom(263, "NEM Group",
 				"player.level <= 80"
 			}
 		},
-		--Lava Lash[60103 lvl 10]
+		{"!8050",
+			{	"!target.debuff(8050)",
+				"player.level <= 80",
+				"player.casting(403)",
+				"player.casting.delta > 1"
+			}
+		},
+		--Lava Lash[60103 lvl 10 Ins 5y 10s]
 		{"60103"},
-		--Unleash Elements[73680 lvl 81]
+		{"!60103",
+			{	"target.spell(60103).range",
+				"player.casting(403)",
+				"player.casting.delta > 1"
+			}
+		},
+		--Unleash Elements[73680 lvl 81 Ins 40y 15s]
 		{"73680"},
+		{"!73680",
+			{	"target.spell(73680).range",
+				"player.casting(403)",
+				"player.casting.delta > 1"
+			}
+		},
 		--Earth Shock[8042 lvl 6]
 		{"8042"},
+		--Primal Strike 73899
+		{"73899"},
+		{"!73899",
+			{	"target.spell(73899).range",
+				"player.casting(403)",
+				"player.casting.delta > 1"
+			}
+		},
 		-- Chain Lighning[421 lvl 28] when enemies >=3 + LB rules
 		{ "421", 
 			{	"modifier.enemies >= 3",
@@ -420,9 +462,10 @@ ProbablyEngine.rotation.register_custom(263, "NEM Group",
 				"modifier.multitarget"
 			}
 		},
-		--Lightning Bolt with Maelstrom Weapon OR moving
+		--Lightning Bolt with Maelstrom Weapon OR moving OR < 50 so no buff
 		{"403","player.buff(53817).count >= 1"},
 		{"403","player.moving"},
+		{"403","player.level < 50"},
 		
 },
  {
@@ -450,7 +493,7 @@ ProbablyEngine.rotation.register_custom(263, "NEM Group",
 				"target.exists",
 				"target.enemy",
 				"toggle.AT",
-				"target.debuff(8050).duration < 3"
+				"!target.debuff(8050)"
 			},"target"
 		}, 
 	-- LB		

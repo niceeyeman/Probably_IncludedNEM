@@ -6,7 +6,7 @@
 
 ProbablyEngine.rotation.register_custom(265, "NEM Solo-PVP", 
 { 
---InCombat
+-- *** NEM Standards ***		
 -- PVP Trink Insignia of the Alliance
 	-- Insignia of the Alliance
 	{"#29593", "player.state.fear"},					
@@ -16,7 +16,7 @@ ProbablyEngine.rotation.register_custom(265, "NEM Solo-PVP",
 -- Racials start
 -- PVP Gnome
 	-- Escape Artist
-	{"20589", "player.state.snare"},						
+	{"20589", "player.state.snare"},						 
 	{"20589", "player.state.root"},						
 
 -- PVP Human Racial
@@ -28,6 +28,7 @@ ProbablyEngine.rotation.register_custom(265, "NEM Solo-PVP",
 -- PVP Dwarf Racial
 	-- Stoneform cures Poison, Disease and Bleed
 	{"20594","player.dispellable(20594)"}, -- untested
+	{"20594", "player.health <= 65" },
 	
 -- PVP Undead Racial
 	-- Will of the Forsaken
@@ -38,22 +39,88 @@ ProbablyEngine.rotation.register_custom(265, "NEM Solo-PVP",
 -- OTHER Racials
 	-- Blood Elf Arcane Torrent by name each class has own spellID
 	{"Arcane Torrent","target.range <= 8"}, --untested
+	{"28730","target.range <= 8"}, --Default untested
+	{"50613","target.range <= 8"}, --DK untested
+	{"80483","target.range <= 8"}, --Hunter untested
+	{"129597","target.range <= 8"}, --Monk untested
+	{"25046","target.range <= 8"}, --Rogue untested
+	{"69179","target.range <= 8"}, --Warrior untested
+	
 	-- Troll Berserking on CD
-	{"26297"}, 
+	{"26297",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(26297)"
+		}
+	}, 
 	-- Orc Blood Fury onCD by name multiple spellIDs
-	{"Blood Fury"},
+	{"20572",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(20572)"
+		}
+	},
+	{"33697",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(33697)"
+		}
+	},
+	{"33702",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(33702)"
+		}
+	},
+	{"Blood Fury",
+		{	"!modifier.last",
+			"target.ttd > 14",
+			"!player.buff(Blood Fury)"
+		}
+	},
+	-- Blood Fury END
 	-- Draenei Gift of the Naaru **included for copy/paste**
-	{"Gift of the Naaru","player.health <= 80"},
+	{"59545", --DK
+		{	"!modifier.last"
+			,"player.health <= 80"
+		}
+	},
+	{"59543", --Hunter
+		{	"!modifier.last"
+			,"player.health <= 80"
+		}
+	},
+	{"59548", --Mage
+		{	"!modifier.last"
+			,"player.health <= 80"
+		}
+	},
+	{"Gift of the Naaru",
+		{	"!modifier.last"
+			,"player.health <= 80"
+		}
+	},
 	-- Pandaren Quaking Palm SAP **included for copy/paste**
 	{"107079","modifier.interrupts"},
 	-- Goblin Rocket Barrage **included for copy/paste**
 	-- {"69041"},
 	-- Goblin Rocket Jump **included for copy/paste**
 	-- {"69070"},
-	-- Night Elf Shadowmeld **included for copy/paste**
-	-- {"58984"},
+	-- Night Elf Shadowmeld threat > 95% and not solo
+	{"58984",
+		{	"player.threat >= 95",
+			"!modifier.members == 0",
+		}
+	},
 	-- Tauren War Stomp **included for copy/paste**
-	{"20549","target.range <= 8"}, --untested
+	{"20549",
+		{	"target.range <= 8",
+			"!modifier.last"
+		}
+	}, --untested
+		-- Lifeblood on CD for haste	
+	{"/run CastSpellByName('Lifeblood')","player.spell(lifeblood).cooldown = 0"},
+
 -- Racials end	
 
 --Buffs 
@@ -98,7 +165,6 @@ ProbablyEngine.rotation.register_custom(265, "NEM Solo-PVP",
 	},
    
  --OHHSHITZ
-	{"Lifeblood","player.health <= 90"},
 	{"!#5512", "player.health <= 60"},
 	{"Unending Resolve","player.health <= 50"},
 	{"Demonic Circle: Teleport","!player.health <= 30"},
