@@ -311,10 +311,7 @@ ProbablyEngine.rotation.register_custom(263, "NEM PvP-Solo",
 			"player.health < 40"
 		}
 	},
-		
-	--Healing Surge----
---	{ "8004", "player.health < 60","player"},
-		
+				
 	--Stone Bulwark Totem
 	{ "108270", 
 		{	"!player.totem(108270)",
@@ -369,14 +366,13 @@ ProbablyEngine.rotation.register_custom(263, "NEM PvP-Solo",
 
 	--**Rotation Begin**
 		-- Unleash Elements[73680 lvl 81 Ins 40y 15s] w/ Unleashed Fury [117012 lvl 90 Talent]
-		{"!73680","player.spell(117012).exists"},
-		-- Elemental Blast [117014 lvl 90 Talent 2sec 40yd 12s]
-		{"117014"},
-		{ "!117014", 
-			{	"@NElib.t15_2pc",
-				"player.buff(53817).count >= 4",
+		{"!73680",
+			{	"player.spell(117012).exists",
+				"!target.immune.spell"
 			}
-		},		
+		},
+		-- Elemental Blast [117014 lvl 90 Talent 2sec 40yd 12s]
+		{"117014","!target.immune.spell"},
 		{ "!117014","player.buff(53817).count = 5"},
 		-- Feral Spirit [51533 lvl 60 Ins 30y 2min]
 		{"51533"},
@@ -386,7 +382,7 @@ ProbablyEngine.rotation.register_custom(263, "NEM PvP-Solo",
 				"target.debuff(8050)"
 			}
 		},
-		-- Chain Lighning[421 lvl 28] when enemies >=3 + LB rules
+		-- Chain Lighning[421 lvl 28 2s 30y] when enemies >=3 + LB rules
 		{ "421", 
 			{	"modifier.enemies >= 3",
 				"@NElib.t15_2pc",
@@ -416,7 +412,7 @@ ProbablyEngine.rotation.register_custom(263, "NEM PvP-Solo",
 				"player.casting.delta > 1"
 			}
 		},
-		--Flame Shock[8050 lvl 12] if Unleash Flame [73683] or (!debuff & Unleash Elements[73680 lvl 81] cooldown > 5) or (!debuff & lvl <=80)
+		--Flame Shock[8050 lvl 12 Ins 25y 6s] if Unleash Flame [73683] or (!debuff & Unleash Elements[73680 lvl 81] cooldown > 5) or (!debuff & lvl <=80)
 		{"8050","player.buff(73683)"},
 		{"8050",
 			{	"!target.debuff(8050)",
@@ -444,16 +440,17 @@ ProbablyEngine.rotation.register_custom(263, "NEM PvP-Solo",
 			}
 		},
 		--Unleash Elements[73680 lvl 81 Ins 40y 15s]
-		{"73680"},
+		{"73680","!target.immune.spell"},
 		{"!73680",
 			{	"target.spell(73680).range",
+				"!target.immune.spell",
 				"player.casting(403)",
 				"player.casting.delta > 1"
 			}
 		},
-		--Earth Shock[8042 lvl 6]
-		{"8042"},
-		--Primal Strike 73899
+		--Earth Shock[8042 lvl 6 Ins 25y 6s]
+		{"8042","!target.immune.spell"},
+		--Primal Strike [73899 lvl 3 Ins 5y 8s]
 		{"73899"},
 		{"!73899",
 			{	"target.spell(73899).range",
@@ -461,6 +458,23 @@ ProbablyEngine.rotation.register_custom(263, "NEM PvP-Solo",
 				"player.casting.delta > 1"
 			}
 		},
+		},	--[/immune Rotation]
+		{								--Don't waste mana 
+			"!target.immune.all",		--Can't touch this!
+			"!target.buff(122464.any)", -- Dematerialize 
+			"!target.buff(122470).any", -- touch of karma
+		}
+	}, 	--[/Immune Check]  
+	
+	--Healing Surge[8004 lvl 7 1.5 40y] if target out of melee range and health < 40%----
+	{ "8004", 
+		{	"!target.spell(73899).range",
+			"player.health < 40"
+		},"player"
+	},
+	
+    {	--[immune check] 
+		{	--[immune Rotation] 
 		-- Chain Lighning[421 lvl 28] when enemies >=3 + LB rules
 		{ "421", 
 			{	"modifier.enemies >= 3",
@@ -476,6 +490,7 @@ ProbablyEngine.rotation.register_custom(263, "NEM PvP-Solo",
 		{								--Don't waste mana 
 			"!target.immune.all",		--Can't touch this!
 			"!target.buff(122464.any)", -- Dematerialize 
+			"!target.immune.spell",
 			"!target.buff(122470).any", -- touch of karma
 		}
 	}, 	--[/Immune Check]    
@@ -500,6 +515,13 @@ ProbablyEngine.rotation.register_custom(263, "NEM PvP-Solo",
 	--Lightning Shield
 	{ "324", "!player.buff(324)" }, 
 
+	--Healing Surge[8004 lvl 7 1.5 40y] mana > 50% and health < 75%----
+	{ "8004", 
+		{	"player.mana >= 50",
+			"player.health <= 75"
+		},"player"
+	},
+	
 		--Moving buff  
 	{ "Ghost Wolf",
 		{
@@ -516,7 +538,8 @@ ProbablyEngine.rotation.register_custom(263, "NEM PvP-Solo",
 				"target.exists",
 				"target.enemy",
 				"toggle.AT",
-				"target.debuff(8050).duration < 3",				"player.casting(403)",
+				"target.debuff(8050).duration < 3",				
+				"player.casting(403)",
 				"player.casting.delta > 1"
 			},"target"
 		}, 
@@ -525,7 +548,7 @@ ProbablyEngine.rotation.register_custom(263, "NEM PvP-Solo",
 				"target.exists",
 				"target.enemy",
 				"toggle.AT",
-				"!11target.debuff(8050)"
+				"!target.debuff(8050)"
 			},"target"
 		}, 
 	-- LB		

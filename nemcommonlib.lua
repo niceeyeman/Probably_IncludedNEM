@@ -40,6 +40,7 @@ function nemcommon.canDebuff(debuffnem)
 end
 ]]
 
+--**replaced with "player.buffs.crit" **
 -- Checks player for Leader of the Pack,Arcane/dalaran Brilliance,Lot White Tiger, Hunter Pet Buffs
 -- false if any duration > 3, True if needs refreshed/missing
 function nemcommon.fiveCrit(thresholdfc)
@@ -53,6 +54,7 @@ function nemcommon.fiveCrit(thresholdfc)
 	return true
 end
 
+--**replaced with "player.buffs.stats" **
 -- Checks player for Mark of the Wild,Legacy of the Emperor,Blessing of Kings,Embrace of the Shale Spider
 -- false if any duration > 3, True if needs refreshed/missing
 function nemcommon.fiveMainstats(thresholdfms)
@@ -65,6 +67,7 @@ function nemcommon.fiveMainstats(thresholdfms)
 	end
 	return true
 end
+--**replaced with "player.buffs.spellpower" **
 -- Checks player for Arcane/Dalaran Brilliance,Burning Wrath, Still Water
 -- false if any duration > 3, True if needs refreshed/missing
 function nemcommon.tenSpellpower(thresholdtsp)
@@ -77,6 +80,7 @@ function nemcommon.tenSpellpower(thresholdtsp)
 	end
 	return true
 end
+--**replaced with "player.buffs.stamina" **
 -- Checks player for PW: Fortitude,Dark Intent,Commanding Shout, Qiraji Fortitude 
 -- false if any duration > 3, True if needs refreshed/missing
 function nemcommon.tenStam(thresholdtenstam)
@@ -267,6 +271,36 @@ end
 function nemcommon.Chase()
 		InteractUnit("target")
 	return true
+end
+function nemcommon.cdrCheck() --Thanks Mavmin
+
+  local EB_START, EB_DURATION = GetSpellCooldown(117014) --Elemental Blast
+  local EB_CD = EB_START + EB_DURATION - GetTime()
+  local UE_START, UE_DURATION = GetSpellCooldown(73680)  --Unleash Elements
+  local UE_CD = UE_START + UE_DURATION - GetTime()
+  local FS_START, FS_DURATION = GetSpellCooldown(51533)  --Feral Spirits
+  local FS_CD = FS_START + FS_DURATION - GetTime()
+  local SS_START, SS_DURATION = GetSpellCooldown(77364)  --Stormstrike
+  local SS_CD = SS_START + SS_DURATION - GetTime()
+  local ES_START, ES_DURATION = GetSpellCooldown(8042)  --Earth Shock
+  local ES_CD = ES_START + ES_DURATION - GetTime()
+  local LL_START, LL_DURATION = GetSpellCooldown(60103)  --Lava Lash
+  local LL_CD = LL_START + LL_DURATION - GetTime()
+  local PS_START, PS_DURATION = GetSpellCooldown(73899)  --Primal Strike
+  local PS_CD = PS_START + PS_DURATION - GetTime()
+
+  if (IsPlayerSpell(117014) == true and IsSpellInRange(117014) == 1 and EB_CD <= 2)
+    or (IsPlayerSpell(73680) == true and IsSpellInRange(73680) == 1 and UE_CD <= 2)
+    or (IsPlayerSpell(51533) == true and IsSpellInRange(51533) == 1 and FS_CD <= 2)
+    or (IsPlayerSpell(77364) == true and IsSpellInRange(77364) == 1 and SS_CD <= 2)
+    or (IsPlayerSpell(8042) == true and IsSpellInRange(8042) == 1 and ES_CD <= 2)
+    or (IsPlayerSpell(60103) == true and IsSpellInRange(60103) == 1 and LL_CD <= 2)
+    or (IsPlayerSpell(73899) == true and IsSpellInRange(73899) == 1 and PS_CD <= 2) then
+      return false
+  else
+      return true
+  end
+
 end
 
 
