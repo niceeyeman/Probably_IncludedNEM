@@ -202,7 +202,7 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 	--Shadowfiend 34433 lvl 42 
 	{"Shadowfiend"},
 
-	-- Psychic Scream 8122
+	-- Psychic Scream 8122 when not stunned from War Stomp
 	{ "8122", 
 		{	"!target.immune.fear",
 			"!target.debuff(20549)",
