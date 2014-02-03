@@ -5,6 +5,37 @@
 -- Mavmins Enhancement Lib used for Tier Checks
 if not NElib then NElib = {} end
 
+function NElib.cdrCheck() --Thanks Mavmin
+
+  local EB_START, EB_DURATION = GetSpellCooldown(117014) --Elemental Blast
+  local EB_CD = EB_START + EB_DURATION - GetTime()
+  local UE_START, UE_DURATION = GetSpellCooldown(73680)  --Unleash Elements
+  local UE_CD = UE_START + UE_DURATION - GetTime()
+  local FS_START, FS_DURATION = GetSpellCooldown(51533)  --Feral Spirits
+  local FS_CD = FS_START + FS_DURATION - GetTime()
+  local SS_START, SS_DURATION = GetSpellCooldown(77364)  --Stormstrike
+  local SS_CD = SS_START + SS_DURATION - GetTime()
+  local ES_START, ES_DURATION = GetSpellCooldown(8042)  --Earth Shock
+  local ES_CD = ES_START + ES_DURATION - GetTime()
+  local LL_START, LL_DURATION = GetSpellCooldown(60103)  --Lava Lash
+  local LL_CD = LL_START + LL_DURATION - GetTime()
+  local PS_START, PS_DURATION = GetSpellCooldown(73899)  --Primal Strike
+  local PS_CD = PS_START + PS_DURATION - GetTime()
+
+  if (IsPlayerSpell(117014) == true and IsSpellInRange("elemental blast","target") == 1 and EB_CD <= 2)
+    or (IsPlayerSpell(73680) == true and IsSpellInRange("unleash elements","target") == 1 and UE_CD <= 2)
+    or (IsPlayerSpell(51533) == true and IsSpellInRange("feral spirits","target") == 1 and FS_CD <= 2)
+    or (IsPlayerSpell(77364) == true and IsSpellInRange("stormstrike","target") == 1 and SS_CD <= 2)
+    or (IsPlayerSpell(8042) == true and IsSpellInRange("earth shock","target") == 1 and ES_CD <= 2) 
+    or (IsPlayerSpell(60103) == true and IsSpellInRange("lava lash","target") == 1 and LL_CD <= 2)
+    or (IsPlayerSpell(73899) == true and IsSpellInRange("primal strike","target") == 1 and PS_CD <= 2) then
+      return false
+  else
+      return true
+  end
+
+end
+
 -- ** CHANGE TO TRUE IF YOU HAVE TIER 14 4PCS **
 -- Think its supposed to be T9 4pc 
 function NElib.t14_4pc()
@@ -484,8 +515,16 @@ ProbablyEngine.rotation.register_custom(263, "NEM PvP-Solo",
 		},
 		--Lightning Bolt with Maelstrom Weapon OR moving OR < 50 so no buff
 		{"403","player.buff(53817).count >= 1"},
-		{"403","player.moving"},
-		{"403","player.level < 50"},
+		{"403",
+			{	"@NElib.cdrCheck",
+				"player.moving"
+			}
+		},
+		{"403",
+			{	"@NElib.cdrCheck",
+				"player.level < 50"
+			}
+		},
 		},	--[/immune Rotation]
 		{								--Don't waste mana 
 			"!target.immune.all",		--Can't touch this!
@@ -515,10 +554,10 @@ ProbablyEngine.rotation.register_custom(263, "NEM PvP-Solo",
 	--Lightning Shield
 	{ "324", "!player.buff(324)" }, 
 
-	--Healing Surge[8004 lvl 7 1.5 40y] mana > 50% and health < 75%----
+	--Healing Surge[8004 lvl 7 1.5 40y] mana > 50% and health < 55%----
 	{ "8004", 
 		{	"player.mana >= 50",
-			"player.health <= 75"
+			"player.health <= 55"
 		},"player"
 	},
 	

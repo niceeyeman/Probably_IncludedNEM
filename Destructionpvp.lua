@@ -214,62 +214,6 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 			"target.spell(6789).range"
 		}
 	},
-	-- Lifeblood 121279, 74497, 55503, 55502, 55501, 55500, 55480, 55428, 81708 
-	{"121279",
-		{	"!modifier.last",
-			"player.health < 70",
-			"!player.buff(121279)"
-		}
-	},
-	{"74497",
-		{	"!modifier.last",
-			"player.health < 70",
-			"!player.buff(74497)"
-		}
-	},
-	{"55503",
-		{	"!modifier.last",
-			"player.health < 70",
-			"!player.buff(55503)"
-		}
-	},
-	{"55502",
-		{	"!modifier.last",
-			"player.health < 70",
-			"!player.buff(55502)"
-		}
-	},
-	{"55501",
-		{	"!modifier.last",
-			"player.health < 70",
-			"!player.buff(55501)"
-		}
-	},
-	{"55500",
-		{	"!modifier.last",
-			"player.health < 70",
-			"!player.buff(55500)"
-		}
-	},
-	{"55480",
-		{	"!modifier.last",
-			"player.health < 70",
-			"!player.buff(55480)"
-		}
-	},
-	{"55428",
-		{	"!modifier.last",
-			"player.health < 70",
-			"!player.buff(55428)"
-		}
-	},
-	{"81708",
-		{	"!modifier.last",
-			"player.health < 70",
-			"!player.buff(81708)"
-		}
-	},
-	-- Lifeblood end
 	
 	-- Ember Tap 2 or more Embers	
 	{"114635",											
@@ -288,71 +232,16 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 	-- Heal pet if glyphed Health Funnel
 	{"114189", "pet.health <= 80"}, 
 
-	-- Lifeblood on cd for haste 15 sec fight
+	-- Lifeblood on cd 
 	-- Lifeblood 121279, 74497, 55503, 55502, 55501, 55500, 55480, 55428, 81708 
-	{"/run CastSpellByID(121279)", "player.spell(121279).cooldown = 0"},
-	{"/run CastSpellByID(74497)", "player.spell(74497).cooldown = 0"},
-	{"/run CastSpellByID(121279)", "player.spell(121279).cooldown = 0"},
+	  {"/run CastSpellByName('Lifeblood')","player.spell(lifeblood).cooldown = 0"}, 
 	
-	{"121279",
-		{	"!modifier.last",
-			"target.ttd > 14",
-			"!player.buff(121279)"
-		}
-	},
-	{"74497",
-		{	"!modifier.last",
-			"target.ttd > 14",
-			"!player.buff(74497)"
-		}
-	},
-	{"55503",
-		{	"!modifier.last",
-			"target.ttd > 14",
-			"!player.buff(55503)"
-		}
-	},
-	{"55502",
-		{	"!modifier.last",
-			"target.ttd > 14",
-			"!player.buff(55502)"
-		}
-	},
-	{"55501",
-		{	"!modifier.last",
-			"target.ttd > 14",
-			"!player.buff(55501)"
-		}
-	},
-	{"55500",
-		{	"!modifier.last",
-			"target.ttd > 14",
-			"!player.buff(55500)"
-		}
-	},
-	{"55480",
-		{	"!modifier.last",
-			"target.ttd > 14",
-			"!player.buff(55480)"
-		}
-	},
-	{"55428",
-		{	"!modifier.last",
-			"target.ttd > 14",
-			"!player.buff(55428)"
-		}
-	},
-	{"81708",
-		{	"!modifier.last",
-			"target.ttd > 14",
-			"!player.buff(81708)"
-		}
-	},
 	-- Lifeblood end
 	
 	-- Fear auto fire
 	{"5782",											
-		{	"!target.debuff(fear)",
+		{	"player.health < 90",
+			"!target.debuff(fear)",
 			"target.spell(5782).range",
 			"!target.immune.fear",
 			"!modifier.last",
@@ -511,14 +400,6 @@ ProbablyEngine.rotation.register_custom(267, "NEM Solo-PvP",
 		}, "focus" 
 	},	
 	
-	-- Immolate
-	{ "348",
-		{	"target.spell(348).range",
-			"target.exists",
-			"target.enemy",
-		},"target"
-	},			
-  
 	-- Auto Target Enemy 
 	{ "/targetenemy","!target.alive"}, 
 	{ "/targetenemy","!target.enemy"}, 

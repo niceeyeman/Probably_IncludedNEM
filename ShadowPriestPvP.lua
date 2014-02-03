@@ -113,7 +113,11 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 		}
 	}, --untested
 		-- Lifeblood on CD for haste	
-	{"/run CastSpellByName('Lifeblood')","player.spell(lifeblood).cooldown = 0"},
+	{"/run CastSpellByName('Lifeblood')",
+		{	"player.spell(lifeblood).cooldown = 0",
+			"target.ttd >= 14"
+		}
+	},
 
 -- Racials end	
 
@@ -121,11 +125,11 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 	-- Inner fire lvl 9
 	{"588", "!player.buff(588)"},
 	-- PW fort lvl 22
-	{"21562", "@nemcommon.tenStam"},
+	{"21562", "player.buffs.stamina"},
 	-- Fear Ward 6346
 	{"6346", "!player.buff(6346)"}, 					
 	-- PW Shield when no debuff 6788
-	{"17", "!player.debuff(6788).any"},
+	{"!17", "!player.debuff(6788).any"},
 	--Renew 139 lvl 26 if NO PW:S but Debuff up
 	{"139",											
 		{	"!player.buff(17)",
@@ -201,7 +205,14 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 	-- Psychic Scream 8122
 	{ "8122", 
 		{	"!target.immune.fear",
+			"!target.debuff(20549)",
 			"target.range <= 8"
+		}
+	},
+	-- Void Tendrils if Psychic Scream cooldown > 15s
+	{ "108920",
+		{	"target.range <= 8",
+			"player.spell(8122).cooldown >= 15"
 		}
 	},
 	--[[ Preempt when channeling
@@ -300,7 +311,7 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 	-- Inner fire lvl 9
 	{"588", "!player.buff(588)"},
 	-- PW fort lvl 22
-	{"21562", "@nemcommon.tenStam"},
+	{"21562", "player.buffs.stamina"},
 	-- Shadowform lvl 24
 	{"15473", "!player.buff(15473)"},
 	
@@ -308,6 +319,14 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 	{"17", 
 		{	"player.moving",
 			"player.spell(64129).exists"
+		}
+	},
+	-- PW Shield when no debuff 6788 IF PvP Flagged
+	{"17", 
+		{	"!player.debuff(6788).any"	,
+			(function() 
+			if UnitIsPVP("player") == 1 then return true end 
+			end )
 		}
 	},
 	-- Renew < 95%

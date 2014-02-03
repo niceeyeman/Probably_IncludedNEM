@@ -288,17 +288,19 @@ function nemcommon.cdrCheck() --Thanks Mavmin
   local LL_CD = LL_START + LL_DURATION - GetTime()
   local PS_START, PS_DURATION = GetSpellCooldown(73899)  --Primal Strike
   local PS_CD = PS_START + PS_DURATION - GetTime()
-
-  if (IsPlayerSpell(117014) == true and IsSpellInRange(117014) == 1 and EB_CD <= 2)
-    or (IsPlayerSpell(73680) == true and IsSpellInRange(73680) == 1 and UE_CD <= 2)
-    or (IsPlayerSpell(51533) == true and IsSpellInRange(51533) == 1 and FS_CD <= 2)
-    or (IsPlayerSpell(77364) == true and IsSpellInRange(77364) == 1 and SS_CD <= 2)
-    or (IsPlayerSpell(8042) == true and IsSpellInRange(8042) == 1 and ES_CD <= 2)
-    or (IsPlayerSpell(60103) == true and IsSpellInRange(60103) == 1 and LL_CD <= 2)
-    or (IsPlayerSpell(73899) == true and IsSpellInRange(73899) == 1 and PS_CD <= 2) then
+  local unit = "target"
+  local ES_RC = IsSpellInRange("earth shock","target")
+  
+  if (IsPlayerSpell(117014) == true and IsSpellInRange("elemental blast","target") == 1 and EB_CD <= 2)
+    or (IsPlayerSpell(73680) == true and IsSpellInRange("unleash elements","target") == 1 and UE_CD <= 2)
+    or (IsPlayerSpell(51533) == true and IsSpellInRange("feral spirits","target") == 1 and FS_CD <= 2)
+    or (IsPlayerSpell(77364) == true and IsSpellInRange("stormstrike","target") == 1 and SS_CD <= 2)
+    or (IsPlayerSpell(8042) == true and IsSpellInRange("earth shock","target") == 1 and ES_CD <= 2) 
+    or (IsPlayerSpell(60103) == true and IsSpellInRange("lava lash","target") == 1 and LL_CD <= 2)
+    or (IsPlayerSpell(73899) == true and IsSpellInRange("primal strike","target") == 1 and PS_CD <= 2) then
       return false
   else
-      return true
+       return true
   end
 
 end

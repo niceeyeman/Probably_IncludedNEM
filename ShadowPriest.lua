@@ -121,7 +121,7 @@ ProbablyEngine.rotation.register_custom(258, "NEM Group",
 	-- Inner fire lvl 9
 	{"588", "!player.buff(588)"},
 	-- PW fort lvl 22
-	{"21562", "@nemcommon.tenStam"},
+	{"21562", "player.buffs.stamina"},
 	-- Shadowform lvl 24
 	{"15473", "!player.buff(15473)"},
 	-- Fear Ward 6346
@@ -295,7 +295,7 @@ ProbablyEngine.rotation.register_custom(258, "NEM Group",
 	-- Inner fire lvl 9
 	{"588", "!player.buff(588)"},
 	-- PW fort lvl 22
-	{"21562", "@nemcommon.tenStam"},
+	{"21562", "player.buffs.stamina"},
 	-- Shadowform lvl 24
 	{"15473", "!player.buff(15473)"},
 	
