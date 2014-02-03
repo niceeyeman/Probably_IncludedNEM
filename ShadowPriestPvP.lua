@@ -109,6 +109,7 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 	-- Tauren War Stomp **included for copy/paste**
 	{"20549",
 		{	"target.range <= 8",
+			"!target.debuff(8122)",
 			"!modifier.last"
 		}
 	}, --untested
@@ -125,11 +126,20 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 	-- Inner fire lvl 9
 	{"588", "!player.buff(588)"},
 	-- PW fort lvl 22
-	{"21562", "player.buffs.stamina"},
+	{"21562", "!player.buffs.stamina"},
 	-- Fear Ward 6346
 	{"6346", "!player.buff(6346)"}, 					
 	-- PW Shield when no debuff 6788
-	{"!17", "!player.debuff(6788).any"},
+	{"17", "!player.debuff(6788).any"},
+	{"!17", 
+		{	"!player.debuff(6788).any",
+			"player.health <= 99",
+			(function() 
+			if UnitChannelInfo("player") ~= nil then return true end 
+			end )
+		}
+	}, 
+	
 	--Renew 139 lvl 26 if NO PW:S but Debuff up
 	{"139",											
 		{	"!player.buff(17)",
@@ -209,10 +219,11 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 			"target.range <= 8"
 		}
 	},
-	-- Void Tendrils if Psychic Scream cooldown > 15s
+	-- Void Tendrils if Psychic Scream cooldown > 10s & Not Feared
 	{ "108920",
 		{	"target.range <= 8",
-			"player.spell(8122).cooldown >= 15"
+			"player.spell(8122).cooldown >= 10",
+			"!target.debuff(8122)"
 		}
 	},
 	--[[ Preempt when channeling
@@ -225,79 +236,90 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
     { --DPS WILL NOT FIRE IF TARGET CAN'T BE HURT	
 		{ -- Rotation Nesting start
 			-- *** Standard Rotation ***
-	-- Devouring Plague 2944 lvl 21 with 3 orbs
-	{"!2944","player.shadoworbs = 3"},
-	{"!2944", 
-		{	"player.shadoworbs = 3",
-			(function() 
-			if UnitChannelInfo("player") ~= nil then return true end 
-			end )
-		}
-	}, 
-	--Mind Spike 73510 lvl 44 IF From Darkness, Comes Light(45 talent) proc'd 87160
-	{"73510","player.buff(87160)"},
-	{"!73510",
-		{	"player.buff(87160)",
-			(function() 
-			if UnitChannelInfo("player") ~= nil then return true end 
-			end )
-		}
-	},
-	-- Dot target
-	-- Shadowfiend 34433
-	{"34433"},
-	-- SW: Pain 589 lvl 3
-	{"589", "!target.debuff(589)"},
-	{"589", 
-		{	"modifier.multitarget",
-			"mouseover.spell(589).range",
-			"!mouseover.debuff(589)",
-			"mouseover.enemy"
-		},"mouseover"
-	},
-	-- Vampiric Touch 34914 lvl 28
-	{"34914", "!target.debuff(34914)"}, 
-	{"34914", 
-		{	"modifier.multitarget",
-			"mouseover.spell(34914).range",
-			"!mouseover.debuff(34914)",
-			"mouseover.enemy"
-		},"mouseover"
-	},
+			-- Devouring Plague 2944 lvl 21 with 3 orbs
+			{"!2944","player.shadoworbs = 3"},
+			{"!2944", 
+				{	"player.shadoworbs = 3",
+					(function() 
+					if UnitChannelInfo("player") ~= nil then return true end 
+					end )
+				}
+			}, 
+			--Mind Spike 73510 lvl 44 IF From Darkness, Comes Light(45 talent) proc'd 87160
+			{"73510","player.buff(87160)"},
+			{"!73510",
+				{	"player.buff(87160)",
+					(function() 
+					if UnitChannelInfo("player") ~= nil then return true end 
+					end )
+				}
+			},
+			-- Dot target
+			-- Shadowfiend 34433
+			{"34433"},
+			-- SW: Pain 589 lvl 3
+			{"589", "!target.debuff(589)"},
+			{"589", 
+				{	"modifier.multitarget",
+					"mouseover.spell(589).range",
+					"!mouseover.debuff(589)",
+					"mouseover.enemy"
+				},"mouseover"
+			},
+			-- Vampiric Touch 34914 lvl 28
+			{"34914", "!target.debuff(34914)"}, 
+			{"34914", 
+				{	"modifier.multitarget",
+					"mouseover.spell(34914).range",
+					"!mouseover.debuff(34914)",
+					"mouseover.enemy"
+				},"mouseover"
+			},
 		
-	-- Mind Blast 8092 lvl 21
-	{"8092"},
-	{"!8092",(function() 
-		if UnitChannelInfo("player") ~= nil then return true end 
-		end )
-	},
-	-- Dot target if < 3
-	{"589","target.debuff(589).duration < 3"},
-	{"15286","target.debuff(15286).duration < 3"},
-	{"!589", 
-		{	"target.debuff(589).duration < 3",
-			(function() 
-			if UnitChannelInfo("player") ~= nil then return true end 
-			end )
-		}
-	}, 
-	{"!15286", 
-		{	"target.debuff(15286).duration < 3",
-			(function() 
-			if UnitChannelInfo("player") ~= nil then return true end 
-			end )
-		}
-	}, 
-	-- Shadow Word: Death 32379 lvl 46
-	{"32379"},
-	{"!32379",(function() 
-		if UnitChannelInfo("player") ~= nil then return true end 
-		end )
-	},
-	-- Mind Flay 15407 lvl 10if dotted with Devouring Plague
-	-- TODO check for Solace and Insanity
-	{"15407","target.debuff(15286)"},
-	{"15407"},
+			-- Mind Blast 8092 lvl 21
+			{"8092"},
+			{"!8092",(function() 
+				if UnitChannelInfo("player") ~= nil then return true end 
+				end )
+			},
+			-- Dot target if < 3
+			{"589","target.debuff(589).duration < 3"},
+			{"15286","target.debuff(15286).duration < 3"},
+			{"!589", 
+				{	"target.debuff(589).duration < 3",
+					(function() 
+					if UnitChannelInfo("player") ~= nil then return true end 
+					end )
+				}
+			}, 
+			{"!15286", 
+				{	"target.debuff(15286).duration < 3",
+					(function() 
+					if UnitChannelInfo("player") ~= nil then return true end 
+					end )
+				}
+			}, 
+			-- Shadow Word: Death 32379 lvl 46
+			{"32379"},
+			{"!32379",(function() 
+				if UnitChannelInfo("player") ~= nil then return true end 
+				end )
+			},
+			-- Mind Flay 15407 lvl 10if dotted with Devouring Plague
+			-- TODO check for Solace and Insanity
+			{"15407",
+				{	"target.debuff(15286)",
+					"player.spell(8092).cooldown >= 1",
+					"target.debuff(589).duration >= 3"
+				}
+			},
+			{"15407",
+				{	"player.level >= 21",
+					"player.spell(8092).cooldown >= 1",
+					"target.debuff(589).duration >= 3"
+				}
+			},
+			{"15407","player.level <= 20"},
 		},
 		{								--Don't waste mana 
 			"!target.immune.all",		--Can't touch this!
@@ -311,7 +333,7 @@ ProbablyEngine.rotation.register_custom(258, "NEM Solo-PvP",
 	-- Inner fire lvl 9
 	{"588", "!player.buff(588)"},
 	-- PW fort lvl 22
-	{"21562", "player.buffs.stamina"},
+	{"21562", "!player.buffs.stamina"},
 	-- Shadowform lvl 24
 	{"15473", "!player.buff(15473)"},
 	

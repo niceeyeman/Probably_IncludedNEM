@@ -280,8 +280,19 @@ ProbablyEngine.rotation.register_custom(258, "NEM Group",
 			},
 			-- Mind Flay 15407 lvl 10if dotted with Devouring Plague
 			-- TODO check for Solace and Insanity
-			{"15407","target.debuff(15286)"},
-			{"15407"},
+			{"15407",
+				{	"target.debuff(15286)",
+					"player.spell(8092).cooldown >= 1",
+					"target.debuff(589).duration >= 3"
+				}
+			},
+			{"15407",
+				{	"player.level >= 21",
+					"player.spell(8092).cooldown >= 1",
+					"target.debuff(589).duration >= 3"
+				}
+			},
+			{"15407","player.level <= 20"},
 		}, -- ** End of Rotation
 			{								--Don't waste mana 
 				"!target.immune.all",		--Can't touch this!
@@ -315,7 +326,18 @@ ProbablyEngine.rotation.register_custom(258, "NEM Group",
 	-- Flash Heal < 50%
 	{"2061", "player.health <= 50","player"},
 	
-}, function()
+},
+{
+	--Auto attack
+	-- SW: Pain 589 lvl 3
+	{"589",
+		{	"target.spell(589).range",
+			"target.exists",
+			"target.enemy",
+		},"target"
+	},	
+},
+ function()
 ProbablyEngine.toggle.create('dispelmagic', 'Interface\\Icons\\spell_nature_nullifydisease', 'Auto Dispel Magic', 'Automatically dispel any magic buffs')
 end
 )
