@@ -226,13 +226,13 @@ ProbablyEngine.rotation.register_custom(262, "NEM Solo-PvP",
 				"modifier.cooldowns" 
 			}
 		},
-	--Stormlash Totem 120668 lvl 78	
+		--Stormlash Totem 120668 lvl 78	
 		{ "Stormlash Totem", 
 			{	"player.spell(120668).exists",
 				"modifier.cooldowns" 
 			}
 		},
-	--Fire Elemental	
+		--Fire Elemental	
 		{ "Fire Elemental Totem", "modifier.cooldowns" },
 		-- Ascendance
 		{ "Ascendance", 
@@ -267,28 +267,62 @@ ProbablyEngine.rotation.register_custom(262, "NEM Solo-PvP",
 --DPS WILL NOT FIRE IF TARGET CAN'T BE HURT		
     {	--[immune check] 
 		{	--[immune Rotation] 
-	
-		-- Rotation
-			-- Flame Shock 
-			{ "Flame Shock", "target.debuff(Flame Shock).duration <= 3" },
-			{ "!Flame Shock", 
-				{	"target.debuff(Flame Shock).duration <= 3",
-				"player.moving",
+		-- Player Moving Rotation
+			{ "Flame Shock", 
+				{	"!target.debuff(Flame Shock)",
+					"player.moving",
 				}
 			},
-			-- Lava Burst
-			{ "Lava Burst", "!player.moving" },
-			-- Elemental Blast
-			{ "Elemental Blast"  },
-			-- Earth Shock
-			{ "Earth Shock", "player.buff(Lightning Shield).count >= 6" },
-			{ "!Earth Shock", 
+			{ "Flame Shock", 
+				{	"target.debuff(Flame Shock).duration <= 3",
+					"player.moving",
+				}
+			},
+			{"Lava Burst","player.buff(Lava Surge)"},
+			{ "Earth Shock", 
 				{	"player.buff(Lightning Shield).count >= 6",
 					"player.moving"
 				}
 			},
+			{ "Lightning Bolt","player.moving" },
+
+			-- Rotation
+		-- Aoe
+			-- Chain Lightning
+			{ "Chain Lightning", 
+				{	"modifier.enemies >= 4",
+					"modifier.multitarget",
+					"!player.moving"
+				}
+			},
+			{"Thunderstorm",
+				{	"modifier.enemies >= 6",
+					"modifier.multitarget",
+					"!player.moving"
+				}
+			},
+			
+			-- Flame Shock 
+			{ "Flame Shock", "!target.debuff(Flame Shock)" },
+			{ "Flame Shock", "target.debuff(Flame Shock).duration <= 3" },
+			-- Lava Burst
+			{ "Lava Burst", "!player.moving" },
+			{"Lava Burst","player.buff(Lava Surge)"},
+			-- Elemental Blast
+			{ "Elemental Blast"  },
+			-- Earth Shock
+			{ "Earth Shock", 
+				{	"player.buff(Lightning Shield).count = 7",
+					"modifier.enemies >= 3"
+				}
+			},
+			{ "Earth Shock", 
+				{	"player.buff(Lightning Shield).count >= 6",
+					"modifier.enemies <= 2"
+				}
+			},
 			-- Frost Shock
-			{ "!Frost Shock", 
+			{ "Frost Shock", 
 				{	"!target.debuff(Frost Shock).any",
 					"target.moving"
 				}
@@ -310,7 +344,6 @@ ProbablyEngine.rotation.register_custom(262, "NEM Solo-PvP",
 		-- Filler
 			-- Lighting Bolt
 			{ "Lightning Bolt" },
-			{ "!Lightning Bolt","player.moving" },
 		},	--[/immune Rotation]
 		{								--Don't waste mana 
 			"!target.immune.all",		--Can't touch this!
